@@ -1,4 +1,4 @@
-package com.tp.java.demo;
+package com.demo;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
