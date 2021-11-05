@@ -9,19 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83aabcaa-6aa9-4578-8237-60bb76fb9ef2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../New folder/.idea/JEE.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../New folder/demo/demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/DbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/HelloServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/HelloServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/HelloServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/demo/HelloServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/demo/HelloServlet.class" afterDir="false" />
-    </list>
+    <list default="true" id="83aabcaa-6aa9-4578-8237-60bb76fb9ef2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,6 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1636103781997</updated>
       <workItem from="1636103782254" duration="5210000" />
+      <workItem from="1636120244009" duration="614000" />
     </task>
     <servers />
   </component>
@@ -139,5 +128,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
