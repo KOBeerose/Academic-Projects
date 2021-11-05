@@ -1,6 +1,7 @@
 package com.demo;
 
 import java.io.*;
+import java.sql.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -20,6 +21,19 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+        try {
+            Connection con = DbConnect.connect();
+            //Creating a Statement object
+            Statement stmt = con.createStatement();
+            //Retrieving the data
+            ResultSet rs = stmt.executeQuery("Show tables");
+            out.println("Tables in the current database: ");
+            while (rs.next()) {
+                out.print(rs.getString(1));
+                out.println();
+            }
+        }
+        catch(Exception e){ out.println(e);}
 
 
 
