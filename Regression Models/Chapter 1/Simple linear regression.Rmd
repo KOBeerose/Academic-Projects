@@ -1,0 +1,40 @@
+---
+title: "Régression linéaire simple"
+output: html_notebook
+---
+
+## Exercice 1
+### 1.
+
+```{r}
+# Importing Data
+data <- read.table("C:/Users/taha_/OneDrive - ine.inpt.ma/Coding/Academic-Projects/Regression Models/Data/exercice1.txt",sep="," ,fill = TRUE,header = TRUE)
+head(data)
+```
+
+
+```{r}
+# plot(Sunday ~ Daily, data = data,
+xlab = "Diffusion quotidienne",
+ylab = "Diffusion dominical",
+main = "la diffusion dominicale par rapport à la diffusion
+quotidienne",
+pch = 20, cex.main=0.5, cex.lab=0.3, col = "grey")
+DiffusionRegression<-lm(Sunday ~ Daily, data=data)
+plot(Sunday ~ Daily, data = data,
+xlab = "Diffusion quotidienne",
+ylab = "Diffusion dominical",
+main = " la diffusion dominicale par rapport à la diffusion
+quotidienne",
+pch = 20, cex.main=0.5, cex.lab=0.3, col = "grey")
+abline(DiffusionRegression, col = "red")
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+
+```
