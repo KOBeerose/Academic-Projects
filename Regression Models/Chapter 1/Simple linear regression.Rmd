@@ -94,3 +94,12 @@ Cela veut dire que la valeur attendu de $R^2$ en inversant Y et X et toujours la
 
 
 
+#### 3.
+
+D'après les figures 3 et 6, on observe que pour les deux modèles ont la même t-value
+ainsi que la même F-statistic.
+
+## Exercice 4
+
+#### 1.
+
