@@ -1,40 +1,135 @@
 ---
 title: "Régression linéaire simple"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 ## Exercice 1
-### 1.
 
+#### 1.
 ```{r}
 # Importing Data
-data <- read.table("C:/Users/taha_/OneDrive - ine.inpt.ma/Coding/Academic-Projects/Regression Models/Data/exercice1.txt",sep="," ,fill = TRUE,header = TRUE)
+data <- read.table("C:/Users/taha_/OneDrive - ine.inpt.ma/Coding/Academic-Projects/Regression Models/Data/exercice1.txt",sep="\t" ,fill = TRUE,header = TRUE)
 head(data)
 ```
 
 
 ```{r}
-# plot(Sunday ~ Daily, data = data,
-xlab = "Diffusion quotidienne",
-ylab = "Diffusion dominical",
-main = "la diffusion dominicale par rapport à la diffusion
-quotidienne",
-pch = 20, cex.main=0.5, cex.lab=0.3, col = "grey")
+plot(Sunday ~ Daily, data=data, 
+     xlab="Diffusion quotidienne", 
+     ylab="Diffusion dominicale", 
+     main="la diffusion dominicale par rapport à la diffusion quotidienne", 
+     pch=20, col="navy")
+```
+#### 2. 
+c'est evident qu'il une relation linéaire entre les deux diffusions puisque les points sont presque regroupés suivant une droite.
+
+
+#### 3. 
+```{r}
 DiffusionRegression<-lm(Sunday ~ Daily, data=data)
 plot(Sunday ~ Daily, data = data,
 xlab = "Diffusion quotidienne",
 ylab = "Diffusion dominical",
-main = " la diffusion dominicale par rapport à la diffusion
-quotidienne",
-pch = 20, cex.main=0.5, cex.lab=0.3, col = "grey")
+main = "la diffusion dominicale par rapport à la diffusion quotidienne",
+pch = 20, col = "navy")
 abline(DiffusionRegression, col = "red")
 ```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+#### 4.
+On effectue le test de Fisher en executant la commande anova :
 ```{r}
-
+anova(DiffusionRegression)
 ```
+On a la valeur de F value est 358.5 >>> 1 et la p-value <<< 0.05. donc on peut affirmer qu'il existe une relation significative entre la diffusion quotidienne et dominicale.
+
+#### 5.
+ 
+On a pris comme hypothèses du test dans la dernière partie:  
+
+$H_0$: La diffusion quotidienne ne dépend pas de la diffusion dominicale ($β1=0$)  
+$H_1$: La diffusion quotidienne peut dépendre de la diffusion dominicale ($β1\neq0$)
+ 
+On a la  $p-value<<0.05$ donc on peut rejeter $H_0$ et dire qu'il existe une relation significative entre la diffusion quotidienne et dominicale de journaux.
+
+#### 6.
+
+$$R^2=\frac{SCE}{SCT}\\\\ =\frac{4292653}{4292653+383136}\\=0.92$$
+## Exercice 2
+
+#### 1.
+
+Calculant les valeurs manquantes Sum Sq X , F value X, Pr(>F) X, et Mean Sq Res:
+ 
+$$ Sum\: Sq\: X = la\: moyenne\: de\: Sum\: Sq * le\: Degré\: de\: liberté\: \\= Mean\: Sq * Df \\= 5291 * 1
+\\= 5921 $$ \\
+
+$$Mean Sq Res = Sum Sq residuals / le Degré de liberté = 181289 / 48 \\= 3776,85$$ \\
+$$F value X = Sum Sq X / Mean Sq Res = 5921 / 3776,85 \\= 1.56$$ \\
+$$Pr(>F) = pf(1.56,1,48) (sur R) \\= 0.7822778$$ \\
+
+#### 2.
+
+On cherche à tester l'hypothèse nulle :
+$H_0$ : $β1 = 0$ au niveau $α = 0.05$
+
+Les valeurs manquantes trouvées dans la question précedente, la p-value est donnée par :   $Pr(>F) = 0.7822778 > 0.05$ ce qui nous conduit à accepter
+l'hypothèse nulle.
+
+#### 3.
+
+Cherchant quelle proportion de la variabilité de Y est expliquée par X.
+
+$$R^2=\frac{SCE}{SCT}\\\\ =\frac{5291}{5291 + 181289}\\=0.028$$ \\
+
+La proportion en question est donc de 2.8%
+
+#### 4.
+
+Dans la régression linéaire simple, on sait que:
+
+$R^2 =corr(x, y)$ ainsi $corr(x, y) = corr(y, x)$ \\
+
+Cela veut dire que la valeur attendu de $R^2$ en inversant Y et X et toujours la même.
+
+
+## Exercice 3
+
+#### 1.
+
+On définit X et Y comme suit et on applique une régression de Y sur X sans constante à l'aide
+de la commande lm(y~x+0):
+
+```{r}
+# init 
+set.seed(1)
+x=rnorm(100)
+y=7/4*x+rnorm(100)
+reg = lm(y~x+0)
+```
+
+
+```{r}
+plot(y~x)
+abline(reg)
+summary(reg)
+```
+#### 2.
+```{r}
+set.seed(1)
+x=rnorm(100)
+y=7/4*x+rnorm(100)
+reg = lm(x~y+0)
+plot(x~y)
+abline(reg)
+summary(reg)
+```
+#### 3.
+
+D'après les figures 3 et 6, on observe que pour les deux modèles ont la même t-value
+ainsi que la même F-statistic.
+
+## Exercice 4
+
+#### 1.
+
