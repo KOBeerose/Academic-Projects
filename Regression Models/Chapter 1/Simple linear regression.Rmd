@@ -93,43 +93,4 @@ $R^2 =corr(x, y)$ ainsi $corr(x, y) = corr(y, x)$ \\
 Cela veut dire que la valeur attendu de $R^2$ en inversant Y et X et toujours la même.
 
 
-## Exercice 3
-
-#### 1.
-
-On définit X et Y comme suit et on applique une régression de Y sur X sans constante à l'aide
-de la commande lm(y~x+0):
-
-```{r}
-# init 
-set.seed(1)
-x=rnorm(100)
-y=7/4*x+rnorm(100)
-reg = lm(y~x+0)
-```
-
-
-```{r}
-plot(y~x)
-abline(reg)
-summary(reg)
-```
-#### 2.
-```{r}
-set.seed(1)
-x=rnorm(100)
-y=7/4*x+rnorm(100)
-reg = lm(x~y+0)
-plot(x~y)
-abline(reg)
-summary(reg)
-```
-#### 3.
-
-D'après les figures 3 et 6, on observe que pour les deux modèles ont la même t-value
-ainsi que la même F-statistic.
-
-## Exercice 4
-
-#### 1.
 
