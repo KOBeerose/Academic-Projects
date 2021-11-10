@@ -103,3 +103,4 @@ ainsi que la même F-statistic.
 
 #### 1.
 
+Pour la régression linéaire de Y sur X sans la constante on a :
