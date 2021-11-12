@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83aabcaa-6aa9-4578-8237-60bb76fb9ef2" name="Changes" comment="" />
+    <list default="true" id="83aabcaa-6aa9-4578-8237-60bb76fb9ef2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/TableShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/DbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/DbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/HelloServlet.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +116,9 @@
       <option name="presentableId" value="Default" />
       <updated>1636103781997</updated>
       <workItem from="1636103782254" duration="5210000" />
-      <workItem from="1636120244009" duration="614000" />
+      <workItem from="1636120244009" duration="1270000" />
+      <workItem from="1636704456965" duration="925000" />
+      <workItem from="1636705684455" duration="1544000" />
     </task>
     <servers />
   </component>
