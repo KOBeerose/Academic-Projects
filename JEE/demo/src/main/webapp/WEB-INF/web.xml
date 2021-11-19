@@ -23,4 +23,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>
+            com.sun.faces.config.ConfigureListener
+        </listener-class>
+    </listener>
+
 </web-app>

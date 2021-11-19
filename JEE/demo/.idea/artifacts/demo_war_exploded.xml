@@ -15,8 +15,9 @@
           <element id="module-output" name="demo" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.27" />
-          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.20" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.20" />
+          <element id="library" level="project" name="Maven: javax:javaee-web-api:8.0.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

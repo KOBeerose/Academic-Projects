@@ -1,11 +1,10 @@
 package com.demo;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @ManagedBean
-
 public class Bonjour {
     private String bonjour = "Bonjour, il est : ";
 
