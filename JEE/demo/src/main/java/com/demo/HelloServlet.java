@@ -16,7 +16,6 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         String db = "test";
-        Handler hdl = new Handler(db);
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
@@ -34,6 +33,7 @@ public class HelloServlet extends HttpServlet {
                 out.println();
             }
         }
+
         catch(Exception e){ out.println(e);}
 
 
