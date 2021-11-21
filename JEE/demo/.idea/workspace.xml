@@ -10,70 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83aabcaa-6aa9-4578-8237-60bb76fb9ef2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../WebApp/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/WebApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../WebApp/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/artifacts/app_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/artifacts/app_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/app/Hello.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/app/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/app/HelloResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/app/HelloServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/resources/META-INF/beans.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/webapp/Hello.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/webapp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_faces_jsf_impl_2_2_20.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_web_api_8_0_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_javaee_api_8_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__javax_javaee_api_8_0_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_27.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/Bonjour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/Bonjour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Bonjour.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Bonjour.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/Bonjour.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/Calculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/DbConnect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/FuzzBuzz.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/Handler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/HelloApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/HelloResource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/TableShow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/Valeur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Bonjour.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/Bonjour.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/demo/Bonjour.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/classes/com/demo/Bonjour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +129,7 @@
       <workItem from="1636120244009" duration="1270000" />
       <workItem from="1636704456965" duration="925000" />
       <workItem from="1636705684455" duration="6786000" />
-      <workItem from="1637309958205" duration="9068000" />
+      <workItem from="1637309958205" duration="9162000" />
     </task>
     <servers />
   </component>
