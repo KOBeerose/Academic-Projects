@@ -1,11 +1,15 @@
 \chapter{Configuration Setup}
 %Intro\footnotemark\\
+\par In this section we will configure and prepare our environment for 
+hosting our private cloud, this configuration include building a network by creating a NAT connection whit our machines so we can use the internet connection, and another internal network that used by Openstack to expose it services for our cloud users and for internal communication purposes then installing an NTP server to adjust time and a MariaDB in order to persist the data about authentication and roles that our Openstack services will be using.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Configuring the network adapter }
 
+
+
 \par In order to configure OpenStack successfully, we will first need to create a network card
-Eth0 with the following ip address "10.0.0.30"
+Eth0 with the following ip address "10.0.0.30".
 \\
 \begin{figure}[!htb] 
 \begin{center} 

@@ -34,7 +34,7 @@
 \FloatBarrier
 
 \par creating an endpoint for the interfaces
-public, internal and admin: 
+public, internal and admin, in order to expose neutron services to our different types of users: 
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -91,7 +91,7 @@ let's define neutron as a group user.
 \begin{center} 
 \includegraphics[width=1\linewidth]{Cloud/Installing and Configuring Neutron services/Changing l3_agent.ini} 
 \end{center} 
-\caption{Changing l3_agent.ini} 
+\caption{Changing l3 agent.ini} 
 \end{figure} 
 \FloatBarrier
 \\
@@ -101,7 +101,7 @@ let's define neutron as a group user.
 \begin{center} 
 \includegraphics[width=1\linewidth]{Cloud/Installing and Configuring Neutron services/Changing dhcp_agent.ini} 
 \end{center} 
-\caption{Changing dhcp_agent.ini} 
+\caption{Changing dhcp agent.ini} 
 \end{figure} 
 \FloatBarrier
 \\
@@ -111,7 +111,7 @@ let's define neutron as a group user.
 \begin{center} 
 \includegraphics[width=1\linewidth]{Cloud/Installing and Configuring Neutron services/Changing metadata_agent.ini} 
 \end{center} 
-\caption{Changing metadata_agent.ini} 
+\caption{Changing metadata agent.ini} 
 \end{figure} 
 \FloatBarrier
 \\
@@ -132,7 +132,7 @@ following :
 \begin{center} 
 \includegraphics[width=1\linewidth]{Cloud/Installing and Configuring Neutron services/Chaning openvswitch_agent.ini} 
 \end{center} 
-\caption{Chaning openvswitch_agent.ini} 
+\caption{Chaning openvswitch agent.ini} 
 \end{figure} 
 \FloatBarrier
 \\
@@ -172,7 +172,7 @@ following :
 
 \section{Configuring Neutron Networking}
 \subsection{Configuring Neutron services}
-\par It's time to set up the network for Neutron. For this, we will chain these commands 
+\par It's time to set up the network for Neutron. For this, we will chain these commands, to create a bridge using openvswitch in order to map our vms networks to the actual cloud infrastructure network, the command in green is not working since there is no eth-1 network interface but we should rather use the ens224 network interface, so we simply bridge the eth1 of our vm machines that openstack will create to the network that our ens224 network interface will be connceted to so in order to communicate whit our server instances we should use end-point exposed by the ens224. and openvswitch will map our request to the correspondent eth-1 in our server instances internal virtual network
 \\
 \begin{figure}[!htb] 
 \begin{center} 

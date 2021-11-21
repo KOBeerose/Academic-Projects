@@ -1,5 +1,5 @@
 \chapter{Pre-Requirementsuration Setup}
-%Intro\footnotemark\\
+\par Now whit our envirement ready to use, we will be installing Openstack Victoria that will help us to build our private cloud, RabbitMQ as message streaming, broker and messaging queue implementation that Openstack services will use in order to communicate since we are in the context of a distributed system. And finally Memcached to ensure that our system will have a caching protocol that fit our distributed system; caching is used to keep important and most demanded information fast to access an store it in memory rather than the hard-drive.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Openstack Victoria}
@@ -42,7 +42,7 @@ let's restart and enable mariadb rabbitmq-server and memcached.
 \begin{center} 
 \includegraphics[width=1\linewidth]{Cloud/Pre-Requirements/changing max_connections} 
 \end{center} 
-\caption{changing max_connections} 
+\caption{changing max connections} 
 \end{figure}  \FloatBarrier
 \\
 \par now we persue with configuring the memcached file in order to listen to all
