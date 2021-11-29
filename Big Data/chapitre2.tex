@@ -1,0 +1,75 @@
+\chapter{Running a Mapreduce program with 1-node}
+\par In this section we will be Running a Mapreduce program in a single node cluster.
+%Intro\footnotemark\\
+\begin{spacing}{1.2}
+%note en bas de page
+\section{Preparing files}
+
+\par First, we gotta make sure that our node is live.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/HDFS Repport.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+
+
+\par Unzip the java code archive and create new directory.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/Exporting jars.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+\section{Working with jars}
+
+\par Compile the java classes "Wcount.java, WcountMap.java and WcountReduce.ja
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/Compiling jars.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+\section{Executing Word Count}
+
+\par Running Word Count algorithm on poeme.txt file.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/running wordcount.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+\par Here is the result given by the algorithm.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/Showing results.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+\par We use stop-dfs.sh and stop-yarn.sh to stop all daemons running on our virtual machine
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Big_Data/Hadoop/1-Node Map_Reduce/Stopping Hadoop and Yarn.jpg} 
+\end{center} 
+\caption{caption} 
+\end{figure} 
+\FloatBarrier
+
+
+\end{spacing}
