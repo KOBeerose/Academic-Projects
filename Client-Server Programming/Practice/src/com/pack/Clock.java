@@ -3,7 +3,7 @@ package com.pack;
 import javax.swing.*;
 
 public class Verctor{
-    x`
+
 }
 public class Clock extends JLabel{
     // to Complete
@@ -12,6 +12,7 @@ public class Clock extends JLabel{
         frame.setSize(200, 200);
         frame.setContentPane(new Clock());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);}
+        frame.setVisible(true);
+    }
 
 }
