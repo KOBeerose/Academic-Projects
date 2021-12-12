@@ -1,4 +1,4 @@
-package com.pack;
+package com.pack.exo1;
 
 class PrintNums extends Thread {
     public void run() {
