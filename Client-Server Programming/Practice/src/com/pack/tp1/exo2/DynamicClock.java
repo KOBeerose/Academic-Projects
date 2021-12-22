@@ -1,4 +1,4 @@
-package com.pack.exo2;
+package com.pack.tp1.exo2;
 
 import javax.swing.*;
 import java.awt.*;

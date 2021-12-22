@@ -1,4 +1,4 @@
-package com.pack.exo1;
+package com.pack.tp1.exo1;
 
 class PrintAlphs implements Runnable {
     private char char1;

@@ -1,6 +1,4 @@
-package com.pack.exo3;
-
-import javax.swing.*;
+package com.pack.tp1.exo3;
 
 public class Animal extends Thread {
 

@@ -1,4 +1,4 @@
-package com.pack.exo3;
+package com.pack.tp1.exo3;
 
 public class CourseDemo {
 
