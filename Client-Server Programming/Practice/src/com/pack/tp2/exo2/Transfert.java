@@ -34,7 +34,7 @@ public class Transfert implements Runnable {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Solde total: " + this.bank.soldeTotal());
+            System.out.println("Solde total: " + this.bank.TotalBalance());
             // }
         }
     }
