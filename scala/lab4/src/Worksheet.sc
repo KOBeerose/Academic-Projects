@@ -1,0 +1,5 @@
+def p : Point = new Point(1, 1)
+println(p)
+p.translate(1, 1)
+p.setX(33)
+println(p.x)
