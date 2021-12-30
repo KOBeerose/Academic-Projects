@@ -1,5 +1,7 @@
 package com.pack.tp2.exo1;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         BankAccount c = new BankAccount(800);
@@ -10,5 +12,6 @@ public class Main {
         Nami.setName("Nami");
         Sanji.start();
         Nami.start();
+
     }
 }
