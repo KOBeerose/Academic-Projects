@@ -1,4 +1,6 @@
 *.vscode/*
 *.idea/*
 */application.properties
+.idea/
+ipynb_checkpoints/
 
