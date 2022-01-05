@@ -2,12 +2,12 @@ package com.pack.tp2.exo2;
 
 public class Transfert implements Runnable {
     Bank bank;
-    int depuis;
+    int sender;
     public static String key = "KEY";
-    public Transfert(Bank banque, int depuis, double amount) {
-        this.bank = banque;
-        this.depuis = depuis;
-        this.bank.accounts[depuis] = amount;
+    public Transfert(Bank bank, int sender, double amount) {
+        this.bank = bank;
+        this.sender = sender;
+        this.bank.accounts[sender] = amount;
     }
     public void run() {
         while (true) {
@@ -18,18 +18,17 @@ public class Transfert implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            double Max = this.bank.accounts[depuis];
+            double Max = this.bank.accounts[sender];
             double Min = 1;
-            double montantTransfert = Min +
-                    (int)(Math.random() * ((Max - Min) + 1));
-            int destinataire = 0 + (int)(Math.random() * (100));
-            while (destinataire == depuis) {
-                destinataire = 0 + (int)(Math.random() * (100));
+            double TransfertAmount = Min + (int)(Math.random() * ((Max - Min) + 1));
+            int receiver = 0 + (int)(Math.random() * (100));
+            while (receiver == sender) {
+                receiver = 0 + (int)(Math.random() * (100));
             }
-            System.out.println("emetteur :" + depuis + " destinataire: " + destinataire + " montant: " + montantTransfert);
+            System.out.println("Sender: " + sender + " Receiver: " + receiver + " amount: " + TransfertAmount);
             synchronized(key) {
                 try {
-                    bank.Transfer(depuis, destinataire, montantTransfert);
+                    bank.Transfer(sender, receiver, TransfertAmount);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -1,4 +1,5 @@
 package com.pack.tp2.exo2;
+import java.util.Arrays;
 
 public class Bank {
     int accountsNumber;
@@ -18,7 +19,11 @@ public class Bank {
     public void Transfer(int sender ,int receiver, double amount) throws InterruptedException {
         if ( amount < accounts[sender] ) {
             accounts[sender] -= amount;
-            Thread.sleep(500);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             accounts[receiver] += amount;
         }
     }
