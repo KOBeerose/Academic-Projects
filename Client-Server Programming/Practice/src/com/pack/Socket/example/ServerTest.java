@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Server {
+public class ServerTest {
     public static void main(String argv[]) {
         int port = 5000;
         Scanner keyb = new Scanner(System.in);

@@ -3,7 +3,7 @@ package com.pack.tp2.exo2;
 public class Transfert implements Runnable {
     Bank bank;
     int sender;
-    public static String key = "KEY";
+    public static final String key = "KEY";
     public Transfert(Bank bank, int sender, double amount) {
         this.bank = bank;
         this.sender = sender;
@@ -21,9 +21,9 @@ public class Transfert implements Runnable {
             double Max = this.bank.accounts[sender];
             double Min = 1;
             double TransfertAmount = Min + (int)(Math.random() * ((Max - Min) + 1));
-            int receiver = 0 + (int)(Math.random() * (100));
+            int receiver = (int) (Math.random() * (100));
             while (receiver == sender) {
-                receiver = 0 + (int)(Math.random() * (100));
+                receiver = (int) (Math.random() * (100));
             }
             System.out.println("Sender: " + sender + " Receiver: " + receiver + " amount: " + TransfertAmount);
             synchronized(key) {
@@ -33,7 +33,7 @@ public class Transfert implements Runnable {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Solde total: " + this.bank.TotalBalance());
+            System.out.println("Total Balance: " + this.bank.TotalBalance());
             // }
         }
     }
