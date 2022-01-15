@@ -1,6 +1,6 @@
 # Time Series
 
-# **Duty**
+# **Assignment**
 
 ### Exercise 1:
 
@@ -33,9 +33,8 @@ $\hat{X}_{2012}= -(θ-ϕ)({X}_{2012}+θ{X}_{2010}+θ^2{X}_{2009}+θ^3{ X}_{2008}
 
 $= -(0.413047-0.495639)(2.4 + 0.413047\times 2.2+(0.413047)^2\times3.2+(0.413047)^3\times1.9+(0.413047)^4\times1.5)$
 <br>
-<span style="color:eb5757, background-color:ededeb">
+
 >$\hat{X}_{2012}= 0.336$
-</span>
 <br>
 
 Same for $\hat{X}_{2013}$ :
@@ -48,7 +47,7 @@ Same for $\hat{X}_{2013}$ :
 
 *Calculate the best prediction, the variance of the prediction error, and the confidence interval (95%) for each of $X_{2012}, X_{2013}, X_{2014}$*
 
-.
+
 
 We have: $X_t = μ + ϕX_{t-1}+ a_t$
 
@@ -68,15 +67,15 @@ And we have $\hat{X}_{n+1} = μ + + ϕX_n$
 
 ⇒ $\hat{X}_{2012} = 5 + + 0.298 \times X_{2011}$
 
-    $`\hat{X}_{2012} =8.1`$
+>$\hat{X}_{2012} = 8.1$
 
 ⇒ $\hat{X}_{2013} = 5 + + 0.298 \times X_{2012}$
 
-    $`\hat{X}_{2012} = $7.42
+>$\hat{X}_{2012} = 7.42$
 
 ⇒ $\hat{X}_{2014} = 5 + + 0.298 \times X_{2013}$
 
-    $`\hat{X}_{2012} = 7.22`$
+>$\hat{X}_{2012} = 7.22$
 
 Since $a_t \sim N(0,1)$ therefore $z_{1-\frac{ {\alpha }}{2}} = 1.96$
 
