@@ -13,12 +13,6 @@ public class PromotionServeur extends UnicastRemoteObject implements Promotion {
         nb++;
         return e;
     }
-    public Etudiant rechercher_un_etudiant(int numero_etudiant) throws java.rmi.RemoteException {
-        for (int i=0; i<nb; i++)
-            if (liste[i].numero_etudiant() == numero_etudiant)
-                return liste[i];
-        throw new RemoteException("Etudiant absent");
-    }
     public double calculer_moyenne_de_la_promotion() throws java.rmi.RemoteException {
         double moy = 0.0;
         double nbm =0.0;
@@ -39,14 +33,11 @@ public class PromotionServeur extends UnicastRemoteObject implements Promotion {
         try {
             java.rmi.registry.LocateRegistry.createRegistry(1099);
             PromotionServeur MonServeur = new PromotionServeur();
-            MyHostName machine = new MyHostName();
-            String nomService = "//" + machine.QualifiedHost() + ":" + "1099" + "/PromotionServeur";
-            Naming.rebind(nomService, MonServeur);
-            System.out.println("PromotionServeur enregistre : " + nomService);
-        }
-        catch (RemoteException e) {
-            System.out.println("PromotionServeur err: " + e.getMessage());
-            e.printStackTrace();
+            Naming.rebind("rmi://localhost/PromotionServeur", MonServeur);
+            System.out.println(" PromotionServeur bound in registry at the url ");
+            System.out.println("Server is ready.");
+        } catch (Exception e) {
+            System.out.println("Server failed.\n" + e);
         }
     }
 }

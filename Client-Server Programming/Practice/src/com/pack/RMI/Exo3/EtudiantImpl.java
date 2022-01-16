@@ -15,15 +15,6 @@ public class EtudiantImpl extends UnicastRemoteObject implements Etudiant {
         liste = new Epreuve[10];
         nb=0;
     }
-    public String nom() throws java.rmi.RemoteException {
-        return _nom;
-    }
-    public String prenom() throws java.rmi.RemoteException {
-        return _prenom;
-    }
-    public int numero_etudiant() throws java.rmi.RemoteException {
-        return _numero;
-    }
     public String afficher_liste_des_epreuves() throws java.rmi.RemoteException {
         StringBuilder Result= new StringBuilder();
         Result.append("Etudiant ").append(_numero).append(" : ").append(_nom).append(" ").append(_prenom);
