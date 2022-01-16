@@ -9,7 +9,7 @@ public class Client {
             Promotion obj = (Promotion) Naming.lookup ("rmi://localhost/PromotionServeur");
             Etudiant Student1 = obj.ajouter_un_etudiant(1, "Taha", "ELGHABI");
             Etudiant Student2 = obj.ajouter_un_etudiant(2, "Badr-eddine", "EL BATOURI");
-            Etudiant Student3 = obj.ajouter_un_etudiant(3, "Mohammed", "70");
+            Etudiant Student3 = obj.ajouter_un_etudiant(3, "Mohamed", "70");
             // note de Taha
             Student1.ajouter_une_epreuve(new Epreuve_avec_coeff(18, " Python for Data Science", 4));
             Student1.ajouter_une_epreuve(new Epreuve_avec_coeff(15, " Client Server Programming", 2));
@@ -26,8 +26,8 @@ public class Client {
             System.out.println(Student2.afficher_liste_des_epreuves());
             System.out.println(Student3.afficher_liste_des_epreuves());
             System.out.println("Average mark of "+Student1.get_Name() +" "+ Student1.calculer_la_moyenne());
-            System.out.println("Average mark of Student 2 = " + Student2.calculer_la_moyenne());
-            System.out.println("Average mark of Student 3 = " + Student3.calculer_la_moyenne());
+            System.out.println("Average mark of "+Student2.get_Name() +" "+ Student2.calculer_la_moyenne());
+            System.out.println("Average mark of "+Student3.get_Name() +" "+ Student3.calculer_la_moyenne());
             System.out.println("Average mark of the Class = " + obj.calculer_moyenne_de_la_promotion());
         }
         catch (Exception e) {

@@ -34,10 +34,10 @@ public class EtudiantImpl extends UnicastRemoteObject implements Etudiant {
         double nbm =0.0;
         for (int i=0; i<nb; i++) {
             mean=mean+liste[i].mark();
-            nbm=nbm+1.0;
+            nbm=nb+1.0;
         }
         if (nb>0)
-            return mean/nbm;
+            return (mean/nbm)/nb;
         else return 0;
     }
 }
