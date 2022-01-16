@@ -1,0 +1,37 @@
+JAVAC           = javac
+RMIC		= rmic -vcompat
+
+
+.SUFFIXES:
+.SUFFIXES:	.java .class 
+.SUFFIXES:	.java _Stub.class
+
+.java.class:
+	$(JAVAC)  $<
+
+.java_Stub.class:
+	$(RMIC)   $*
+
+
+#####################################################
+
+
+CLASSES    = Promotion.java Epreuve.java Epreuve_avec_coeff.java Etudiant.java Client.java MyHostName.java EtudiantImpl.java PromotionServeur.java
+REMOTEOBJ = EtudiantImpl.java PromotionServeur.java
+
+
+all:  class rmic
+
+
+rmic:	$(REMOTEOBJ:.java=_Stub.class)
+
+
+class:	$(CLASSES:.java=.class) 
+
+	
+clean:
+	rm -rf *.class *.bak *~ core
+
+
+
+
