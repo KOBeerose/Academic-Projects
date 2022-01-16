@@ -3,21 +3,24 @@ package com.pack.RMI.Exo3;
 import java.rmi.server.UnicastRemoteObject;
 
 public class EtudiantImpl extends UnicastRemoteObject implements Etudiant {
-    private final String _nom;
-    private final String _prenom;
-    private final int _numero;
+    private final String _firstName;
+    private final String _lastName;
+    private final int _studentId;
     private final Epreuve [] liste;
     int nb;
-    public EtudiantImpl(int num, String nom, String prenom) throws java.rmi.RemoteException {
-        _numero=num;
-        _nom=nom;
-        _prenom=prenom;
+    public EtudiantImpl(int studentId, String firstName, String lastName) throws java.rmi.RemoteException {
+        _studentId=studentId;
+        _firstName=firstName;
+        _lastName=lastName;
         liste = new Epreuve[10];
         nb=0;
     }
+    public String get_Name() throws java.rmi.RemoteException {
+        return _firstName.concat(" "+_lastName);
+    }
     public String afficher_liste_des_epreuves() throws java.rmi.RemoteException {
         StringBuilder Result= new StringBuilder();
-        Result.append("Etudiant ").append(_numero).append(" : ").append(_nom).append(" ").append(_prenom);
+        Result.append("Student ").append(_studentId).append(" : ").append(_firstName).append(" ").append(_lastName);
         for (int i=0; i<nb; i++)
             Result.append(liste[i].afficher());
         return Result.toString();
@@ -27,14 +30,14 @@ public class EtudiantImpl extends UnicastRemoteObject implements Etudiant {
         nb++;
     }
     public double calculer_la_moyenne() throws java.rmi.RemoteException {
-        double moy = 0.0;
+        double mean = 0.0;
         double nbm =0.0;
         for (int i=0; i<nb; i++) {
-            moy=moy+liste[i].note();
+            mean=mean+liste[i].mark();
             nbm=nbm+1.0;
         }
         if (nb>0)
-            return moy/nbm;
+            return mean/nbm;
         else return 0;
     }
 }

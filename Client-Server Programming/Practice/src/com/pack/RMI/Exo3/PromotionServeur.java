@@ -5,28 +5,28 @@ import java.rmi.*;
 import java.rmi.server.*;
 
 public class PromotionServeur extends UnicastRemoteObject implements Promotion {
-    private final Etudiant [] liste;
+    private final Etudiant [] studentsList;
     int nb;
-    public Etudiant ajouter_un_etudiant(int numero_etudiant, String nom, String prenom) throws java.rmi.RemoteException {
-        EtudiantImpl e = new EtudiantImpl(numero_etudiant, nom, prenom);
-        liste[nb]=e;
+    public Etudiant ajouter_un_etudiant(int StudentId, String firstName, String lastName) throws java.rmi.RemoteException {
+        EtudiantImpl e = new EtudiantImpl(StudentId, firstName, lastName);
+        studentsList[nb] = e;
         nb++;
         return e;
     }
     public double calculer_moyenne_de_la_promotion() throws java.rmi.RemoteException {
-        double moy = 0.0;
-        double nbm =0.0;
+        double mean = 0.0;
+        double nbm = 0.0;
         for (int i=0; i<nb; i++) {
-            moy=moy+liste[i].calculer_la_moyenne();
-            nbm=nbm+1.0;
+            mean= mean + studentsList[i].calculer_la_moyenne();
+            nbm= nbm+1.0;
         }
         if (nb>0)
-            return moy/nbm;
+            return mean/nbm;
         else return 0;
     }
     public PromotionServeur() throws RemoteException {
         nb=0;
-        liste = new Etudiant[10];
+        studentsList = new Etudiant[50];
     }
 
     public static void main(String[] args) throws IOException {

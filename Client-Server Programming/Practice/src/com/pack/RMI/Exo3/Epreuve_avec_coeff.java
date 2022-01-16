@@ -1,18 +1,18 @@
 package com.pack.RMI.Exo3;
 
 public class Epreuve_avec_coeff implements Epreuve {
-    public double note;
-    public String nom_epreuve;
+    public double mark;
+    public String examName;
     public double coefficient;
-    public Epreuve_avec_coeff (double note, String nom_epreuve, double coefficient) {
-        this.note=note;
-        this.nom_epreuve=nom_epreuve;
+    public Epreuve_avec_coeff (double mark, String examName, double coefficient) {
+        this.mark=mark;
+        this.examName=examName;
         this.coefficient=coefficient;
     }
     public String afficher() {
-        return "Epreuve " + nom_epreuve + ": " + note;
+        return examName + " Exam: " + mark;
     }
-    public double note() {
-        return note*coefficient;
+    public double mark() {
+        return mark*coefficient;
     }
 }
