@@ -1,16 +1,16 @@
-\chapter{Using the HBase Java API}
+\chapter{Data processing with Spark}
 %Intro\footnotemark\\
 \par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris.
 \begin{spacing}{1.2}
 %note en bas de page
-\section{Configure the CLASSPATH in the .bashrc }
+\section{Preparation of the environment }
 \par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/Configure the CLASSPATH in the .bashrc/Adding classpath in .bashrc} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Installing Apache Maven} 
 \end{center} 
-\caption{Adding classpath in .bashrc} 
+\caption{Installing Apache Maven} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -18,9 +18,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/Configure the CLASSPATH in the .bashrc/Creating hbase-code repository} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Adding Maven to PATH} 
 \end{center} 
-\caption{Creating hbase-code repository} 
+\caption{Adding Maven to PATH} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -28,9 +28,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/Configure the CLASSPATH in the .bashrc/HelloBase.java code} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Checking mvn -v command} 
 \end{center} 
-\caption{HelloBase.java code} 
+\caption{Checking mvn -v command} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -38,19 +38,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/Configure the CLASSPATH in the .bashrc/Compile and run the Class} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Creating Maven project} 
 \end{center} 
-\caption{Compile and run the Class} 
-\end{figure}  \FloatBarrier
-\\
-\section{MapReduce on stored file }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/MapReduce on stored file/Putting the file into HDFS directory} 
-\end{center} 
-\caption{Putting the file into HDFS directory} 
+\caption{Creating Maven project} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -58,9 +48,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/MapReduce on stored file/Create product database} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Configuring pom.xml} 
 \end{center} 
-\caption{Create product database} 
+\caption{Configuring pom.xml} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -68,9 +58,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/MapReduce on stored file/MapReduce on the stored file} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Creating HbaseSparkProcess.java file} 
 \end{center} 
-\caption{MapReduce on the stored file} 
+\caption{Creating HbaseSparkProcess.java file} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -78,9 +68,69 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Using the HBase Java API/MapReduce on stored file/Verifying the Database} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/mvn install package command} 
 \end{center} 
-\caption{Verifying the Database} 
+\caption{mvn install package command} 
+\end{figure}  \FloatBarrier
+\\
+\section{Installing and Configuring Spark-2.4.3 }
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Download and Extract Spark} 
+\end{center} 
+\caption{Download and Extract Spark} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Adding Spark to PATH Variable} 
+\end{center} 
+\caption{Adding Spark to PATH Variable} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Installing Python} 
+\end{center} 
+\caption{Installing Python} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Configuring spark-env.sh file} 
+\end{center} 
+\caption{Configuring spark-env.sh file} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Copying myapp to Spark directory} 
+\end{center} 
+\caption{Copying myapp to Spark directory} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Spark submit command} 
+\end{center} 
+\caption{Spark submit command} 
 \end{figure}  \FloatBarrier
 \\
 

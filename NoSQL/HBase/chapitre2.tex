@@ -1,16 +1,16 @@
-\chapter{Data processing with Spark}
+\chapter{Manipulation of HBase}
 %Intro\footnotemark\\
 \par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris.
 \begin{spacing}{1.2}
 %note en bas de page
-\section{Installing and Configuring Spark-2.4.3 }
+\section{Creation of a BD }
 \par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Download and Extract Spark} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Manipulation of HBase/Creation of a BD/Creating a table and Verifying } 
 \end{center} 
-\caption{Download and Extract Spark} 
+\caption{Creating a table and Verifying } 
 \end{figure}  \FloatBarrier
 \\
 
@@ -18,9 +18,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Adding Spark to PATH Variable} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Manipulation of HBase/Creation of a BD/Inserting Values to the table} 
 \end{center} 
-\caption{Adding Spark to PATH Variable} 
+\caption{Inserting Values to the table} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -28,9 +28,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Installing Python} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Manipulation of HBase/Creation of a BD/Checking the table} 
 \end{center} 
-\caption{Installing Python} 
+\caption{Checking the table} 
 \end{figure}  \FloatBarrier
 \\
 
@@ -38,99 +38,9 @@
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Configuring spark-env.sh file} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Manipulation of HBase/Creation of a BD/Display values of row 102} 
 \end{center} 
-\caption{Configuring spark-env.sh file} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Copying myapp to Spark directory} 
-\end{center} 
-\caption{Copying myapp to Spark directory} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Installing and Configuring Spark-2.4.3/Spark submit command} 
-\end{center} 
-\caption{Spark submit command} 
-\end{figure}  \FloatBarrier
-\\
-\section{Preparation of the environment }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Installing Apache Maven} 
-\end{center} 
-\caption{Installing Apache Maven} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Adding Maven to PATH} 
-\end{center} 
-\caption{Adding Maven to PATH} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Checking mvn -v command} 
-\end{center} 
-\caption{Checking mvn -v command} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Creating Maven project} 
-\end{center} 
-\caption{Creating Maven project} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Configuring pom.xml} 
-\end{center} 
-\caption{Configuring pom.xml} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/Creating HbaseSparkProcess.java file} 
-\end{center} 
-\caption{Creating HbaseSparkProcess.java file} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Data processing with Spark/Preparation of the environment/mvn install package command} 
-\end{center} 
-\caption{mvn install package command} 
+\caption{Display values of row 102} 
 \end{figure}  \FloatBarrier
 \\
 
