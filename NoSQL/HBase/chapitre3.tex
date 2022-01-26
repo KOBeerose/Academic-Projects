@@ -1,10 +1,12 @@
 \chapter{Using the HBase Java API}
 %Intro\footnotemark\\
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris.
+\par HBase provides an API in Java to be able to manipulate database data. We will show here a
+simple example.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Configure the CLASSPATH in the .bashrc }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par To compile our java code without problems, you must include the Hbase libraries in the default classpath,
+thanks to the \$CLASSPATH environment variable, for this:
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -13,8 +15,9 @@
 \caption{Adding classpath in .bashrc} 
 \end{figure}  \FloatBarrier
 \\
+\newpage
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Creating a new hbase-code repository in the Documents folder.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -24,7 +27,14 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Creating “HelloHBase.java” file which contains code that will perform the following operations:
+\begin{itemize}
+  \item Create a table called "user" containing two families of columns: "PersonalData" and
+"ProfessionalData". If this table already exists, it will be overwritten.
+  \item Insert two records in this table.
+  \item Read the value of the 'PersonalData:name' column of the 'user1' row.
+\end{itemize}
+
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -33,8 +43,8 @@
 \caption{HelloBase.java code} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par Compiling and running the “HelloHBase.java” class.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -43,8 +53,10 @@
 \caption{Compile and run the Class} 
 \end{figure}  \FloatBarrier
 \\
+
+
 \section{MapReduce on stored file }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We start by loading the file into the input directory of HDFS that we should first create.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -53,8 +65,8 @@
 \caption{Putting the file into HDFS directory} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par Creating the products database with a family of 'cf' columns.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -64,7 +76,8 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Now let's trigger a MapReduce operation on the main file stored in
+HDFS, to read the data then insert them via puts into the database.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -73,8 +86,8 @@
 \caption{MapReduce on the stored file} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par we finally Check that the database has been created by consulting the city of record number 2000:
 \\
 \begin{figure}[!htb] 
 \begin{center} 

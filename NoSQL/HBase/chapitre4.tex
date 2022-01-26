@@ -1,10 +1,11 @@
 \chapter{Data processing with Spark}
 %Intro\footnotemark\\
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris.
+\par Spark can be used to perform complex processing on HBase data. For this, the different "Executors" of Spark will be co-located with the regions
+servers, and will be able to carry out parallel processing directly where the data is stored.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Preparation of the environment }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par First of all we download and install Apache Maven
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -13,8 +14,8 @@
 \caption{Installing Apache Maven} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par To permanently set up the PATH environment variable for all users. We modify: /etc/profile file by adding the path where the bin of maven in export PATH.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -24,7 +25,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par After saving the profile file, we run the source command, then we verify by running mvn -v command.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -33,8 +34,8 @@
 \caption{Checking mvn -v command} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par Let's create a Maven project. As we can see at the end of the maven project generation, a "Build success" message is displayed.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -44,7 +45,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Reconfiguring the Maven project by modifying the pom.xml file to add dependencies and build properties.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -53,8 +54,8 @@
 \caption{Configuring pom.xml} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par Implementing the "WordCountTask" process in the “HbaseSparkProcess.java” file.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -64,7 +65,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Making an mvn install package on the project. A myapp-1.0-SNAPSHOT.jar file will be created in the target directory of the project.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -73,8 +74,9 @@
 \caption{mvn install package command} 
 \end{figure}  \FloatBarrier
 \\
+\newpage
 \section{Installing and Configuring Spark-2.4.3 }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We start by Downloading version spark-2.4.3-bin-hadoop2.7.tgz, Unziping the recovered file then werename it and place it in the /usr/local directory.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -84,7 +86,8 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Open the .bashrc file and modify the PATH by adding the path where the bin is located
+by spark.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -93,8 +96,8 @@
 \caption{Adding Spark to PATH Variable} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par We should also install Python before going forward with the project.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -104,7 +107,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We configure spark-env.sh file to ensure connection Spark to a Hadoop distribution.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -113,8 +116,8 @@
 \caption{Configuring spark-env.sh file} 
 \end{figure}  \FloatBarrier
 \\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\newpage
+\par Then we copy the myapp-1.0-SNAPSHOT.jar file to our /usr/local/spark directory.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -124,7 +127,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Finally we run this file through spark-submit.
 \\
 \begin{figure}[!htb] 
 \begin{center} 

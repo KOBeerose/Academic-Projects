@@ -1,10 +1,13 @@
-\chapter{Configuring Hbase in Standalone & Pseudo-distributed mode}
+\chapter{Configuring Hbase in Standalone \& Pseudo-distributed mode}
 %Intro\footnotemark\\
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris.
+\par In this Project, we will focus on the use of Hbase with the HDFS file system of
+the hadoop ecosystem and with the Spark processing software. So we will use a VM with
+Apache Hadoop and Apache Spark installed and configured in local mode.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Preparating environment }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We must first create a VM that is configured with Hadoop2.7.4 (hadoop version compatible with hbase-1.4.7) and with spark-2.4.3 in local mode. Installation and configuration of hadoop and spark on a single node is already from the previous project: INTRODUCTION TO BIG DATA”.\\
+We verify that the Hadoop cluster is working fine running the hdfs report command.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -14,7 +17,7 @@
 \end{figure}  \FloatBarrier
 \\
 \section{Installing and Configuring Apache Hbase }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par First Install and configure Hadoop-2.7.4 in single node. We start by downloading HBase.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -24,7 +27,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We rename the created hbase-1.4.7 directory and place it in /usr/local dir.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -34,7 +37,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Modifying the PATH by adding the following paths in the .bashrc:
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -44,7 +47,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Updating the current shell environment source .bashrc commend to apply the changes.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -54,7 +57,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Hbase requires the installation of Java 8. We must install JAVA 8 and after check its installation by typing: java -version.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -64,17 +67,17 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par You must now configure the JAVA\_HOME in the "hbase-env.sh" file.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Installing and Configuring Apache Hbase/Adding JAVA_HOME to hbase-env.sh file} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Installing and Configuring Apache Hbase/Adding JAVA\_HOME to hbase-env.sh file} 
 \end{center} 
-\caption{Adding JAVA_HOME to hbase-env.sh file} 
+\caption{Adding JAVA\_HOME to hbase-env.sh file} 
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Since we will work with a single server, we must modify the /etc/hosts file to change the server address from 127.0.1.1 to 127.0.0.1 as follows:
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -84,27 +87,27 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par To apply the changes we should restart our machine.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
 \includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Installing and Configuring Apache Hbase/rebooting the machine} 
 \end{center} 
-\caption{rebooting the machine} 
+\caption{Rebooting the machine} 
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Let's run the following commands to clean the hadoop\_store in our VM.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
 \includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Installing and Configuring Apache Hbase/Cleaning the hadoop_store} 
 \end{center} 
-\caption{Cleaning the hadoop_store} 
+\caption{Cleaning the hadoop\_store} 
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Running namenode formatting, starting Hadoop daemons and Verifying that the Hadoop cluster is working.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -113,18 +116,13 @@
 \caption{Starting hadoop daemons} 
 \end{figure}  \FloatBarrier
 \\
+
 \section{Configuring Hbase in Standalone mode }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Standalone mode/Configuration of hbase-site.xml file } 
-\end{center} 
-\caption{Configuration of hbase-site.xml file } 
-\end{figure}  \FloatBarrier
+
+\par In This section will go over the the configuration of a Standalone mode of HBase on a single node. An instance standalone contains all HBase daemons (HMaster and ZooKeeper) running in a single JVM persistent on the local filesystem ( This is the most basic deployment mode ).
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par First, you have to start the Hadoop daemons and make sure they are working.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -134,7 +132,17 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Configuring “hbase-site.xml” for “Standalone” mode.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Standalone mode/Configuration of hbase-site.xml file .jpg} 
+\end{center} 
+\caption{Configuration of hbase-site.xml file} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Launching of Hbase in a “Standalone” mode.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -144,7 +152,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Stopping all Hbase daemons bt typing stop-hbase.sh
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -154,7 +162,12 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+
+\section{Configuring Hbase in Pseudo-distributed mode }
+\par This section describes the configuration of a "pseudo-distributed" mode. Since we are using a single node (a single VM), hbase then runs on a single node, which means that each HBase daemon (HMaster,HRegionServer and ZooKeeper) will run as a separate process in the node (using multi threading).
+\\
+
+\par Creation of the necessary files for Hbase in the HDFS starting by Hbase's repositories in Hadoop.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -163,8 +176,8 @@
 \caption{Creating Hbase repositories in Hadoop} 
 \end{figure}  \FloatBarrier
 \\
-\section{Configuring Hbase in Pseudo-distributed mode }
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+
+\par we should also confugure HBase in pseudo-distributed mode by adding the following lines in the “hbase-site.xml”
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -174,7 +187,7 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par Now let's launch Hbase and verify that all services are working with the jps command.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -184,7 +197,8 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We can check Hbase status in our browser by going the to localhost:16010/master-status
+ url.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -194,23 +208,13 @@
 \end{figure}  \FloatBarrier
 \\
 
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
+\par We can Also test Hbase terminal.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
 \includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Pseudo-distributed mode/Testing in Terminal} 
 \end{center} 
 \caption{Testing in Terminal} 
-\end{figure}  \FloatBarrier
-\\
-
-\par Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis massa quis orci volutpat, ut dictum tellus pulvinar. Nam vulputate diam a leo dignissim varius. Aenean nec tellus malesuada, tristique libero vitae, lacinia nibh. Donec quam libero, accumsan sollicitudin massa a, dictum gravida mauris
-\\
-\begin{figure}[!htb] 
-\begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Pseudo-distributed mode/Droping a table} 
-\end{center} 
-\caption{Droping a table} 
 \end{figure}  \FloatBarrier
 \\
 
