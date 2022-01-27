@@ -1,6 +1,6 @@
 \chapter{Configuring Hbase in Standalone \& Pseudo-distributed mode}
 %Intro\footnotemark\\
-\par In this Project, we will focus on the use of Hbase with the HDFS file system of
+\par In this Chapter, we will focus on the use of Hbase with the HDFS file system of
 the hadoop ecosystem and with the Spark processing software. So we will use a VM with
 Apache Hadoop and Apache Spark installed and configured in local mode.
 \begin{spacing}{1.2}
@@ -16,6 +16,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{hdfs report} 
 \end{figure}  \FloatBarrier
 \\
+\newpage
 \section{Installing and Configuring Apache Hbase }
 \par First Install and configure Hadoop-2.7.4 in single node. We start by downloading HBase.
 \\
@@ -36,7 +37,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Extracting and moving Hbase folder} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par Modifying the PATH by adding the following paths in the .bashrc:
 \\
 \begin{figure}[!htb] 
@@ -56,7 +57,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Update current shell environment} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par Hbase requires the installation of Java 8. We must install JAVA 8 and after check its installation by typing: java -version.
 \\
 \begin{figure}[!htb] 
@@ -67,7 +68,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \end{figure}  \FloatBarrier
 \\
 
-\par You must now configure the JAVA\_HOME in the "hbase-env.sh" file.
+\par We must now configure the JAVA\_HOME in the "hbase-env.sh" file.
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -76,7 +77,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Adding JAVA\_HOME to hbase-env.sh file} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par Since we will work with a single server, we must modify the /etc/hosts file to change the server address from 127.0.1.1 to 127.0.0.1 as follows:
 \\
 \begin{figure}[!htb] 
@@ -96,7 +97,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Rebooting the machine} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par Let's run the following commands to clean the hadoop\_store in our VM.
 \\
 \begin{figure}[!htb] 
@@ -116,14 +117,13 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Starting hadoop daemons} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \section{Configuring Hbase in Standalone mode }
 
 \par In This section will go over the the configuration of a Standalone mode of HBase on a single node. An instance standalone contains all HBase daemons (HMaster and ZooKeeper) running in a single JVM persistent on the local filesystem ( This is the most basic deployment mode ).
 \\
 
-\par First, you have to start the Hadoop daemons and make sure they are working.
-\\
+\par First, We have to start the Hadoop daemons and make sure they are working.
 \begin{figure}[!htb] 
 \begin{center} 
 \includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Standalone mode/HMaster in jps} 
@@ -136,7 +136,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \\
 \begin{figure}[!htb] 
 \begin{center} 
-\includegraphics[width=1\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Standalone mode/Configuration of hbase-site.xml file .jpg} 
+\includegraphics[width=\linewidth]{Pictures/HBase/Configuring Hbase in Standalone & Pseudo-distributed mode/Configuring Hbase in Standalone mode/Configuration of hbase-site.xml file .jpg} 
 \end{center} 
 \caption{Configuration of hbase-site.xml file} 
 \end{figure}  \FloatBarrier
@@ -162,7 +162,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \end{figure}  \FloatBarrier
 \\
 
-
+\newpage
 \section{Configuring Hbase in Pseudo-distributed mode }
 \par This section describes the configuration of a "pseudo-distributed" mode. Since we are using a single node (a single VM), hbase then runs on a single node, which means that each HBase daemon (HMaster,HRegionServer and ZooKeeper) will run as a separate process in the node (using multi threading).
 \\
@@ -177,7 +177,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \end{figure}  \FloatBarrier
 \\
 
-\par we should also confugure HBase in pseudo-distributed mode by adding the following lines in the “hbase-site.xml”
+\par We should also confugure HBase in pseudo-distributed mode by adding the following lines in the “hbase-site.xml”
 \\
 \begin{figure}[!htb] 
 \begin{center} 
@@ -207,7 +207,7 @@ We verify that the Hadoop cluster is working fine running the hdfs report comman
 \caption{Testing in browser} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par We can Also test Hbase terminal.
 \\
 \begin{figure}[!htb] 

@@ -1,11 +1,11 @@
 \chapter{Using the HBase Java API}
 %Intro\footnotemark\\
-\par HBase provides an API in Java to be able to manipulate database data. We will show here a
+\par HBase provides an API in Java to be able to manipulate database data. In this Chapter We will show here a
 simple example.
 \begin{spacing}{1.2}
 %note en bas de page
 \section{Configure the CLASSPATH in the .bashrc }
-\par To compile our java code without problems, you must include the Hbase libraries in the default classpath,
+\par To compile our java code without problems, we must include the Hbase libraries in the default classpath,
 thanks to the \$CLASSPATH environment variable, for this:
 \\
 \begin{figure}[!htb] 
@@ -28,6 +28,7 @@ thanks to the \$CLASSPATH environment variable, for this:
 \\
 
 \par Creating “HelloHBase.java” file which contains code that will perform the following operations:
+\\
 \begin{itemize}
   \item Create a table called "user" containing two families of columns: "PersonalData" and
 "ProfessionalData". If this table already exists, it will be overwritten.
@@ -54,7 +55,7 @@ thanks to the \$CLASSPATH environment variable, for this:
 \end{figure}  \FloatBarrier
 \\
 
-
+\newpage
 \section{MapReduce on stored file }
 \par We start by loading the file into the input directory of HDFS that we should first create.
 \\
@@ -65,7 +66,6 @@ thanks to the \$CLASSPATH environment variable, for this:
 \caption{Putting the file into HDFS directory} 
 \end{figure}  \FloatBarrier
 \\
-\newpage
 \par Creating the products database with a family of 'cf' columns.
 \\
 \begin{figure}[!htb] 
@@ -75,7 +75,7 @@ thanks to the \$CLASSPATH environment variable, for this:
 \caption{Create product database} 
 \end{figure}  \FloatBarrier
 \\
-
+\newpage
 \par Now let's trigger a MapReduce operation on the main file stored in
 HDFS, to read the data then insert them via puts into the database.
 \\
@@ -86,8 +86,7 @@ HDFS, to read the data then insert them via puts into the database.
 \caption{MapReduce on the stored file} 
 \end{figure}  \FloatBarrier
 \\
-\newpage
-\par we finally Check that the database has been created by consulting the city of record number 2000:
+\par We finally Check that the database has been created by consulting the city of record number 2000:
 \\
 \begin{figure}[!htb] 
 \begin{center} 
