@@ -2,22 +2,11 @@
  
 using namespace std;
 
-// calculating the distance between each 
-int NearestBox( vector<string> Children;, vector<string> Boxes){
-	vector<int> distances = [];
-	for(auto box: Boxes){
-	    cout << box << endl;
-        distance = math.sqrt((boxX-childX)**2+(boxY-childY)**2)
-        distances.append((boxId, distance))
-        	    vector<float> distances = calcDist(child, Boxes);
-	    int boxNear= min(distances);
-        return distances
-	}
-}
+
 int main() {
 
-	vector<int> Children;
-	vector<int> Boxes;
+	vector < vector<int> > Children;
+	vector < vector<int> > Boxes;
 	
 	// dealing with inputs
 	int n; cin>>n;
@@ -25,25 +14,31 @@ int main() {
     	string boxId;
 		int boxX, boxY;
     	cin>>boxId>>boxX>>boxY;
-    	Boxes.insert(Boxes.end(), { boxX, boxY });
+    	Boxes.insert(Boxes.end(), { {boxX, boxY} } );
 	}
-	
 	int k; cin>>k;
 	for (int i=0; i<k; i++){
 		string childId;
 		int childX, childY;
     	cin>>childId>>childX>>childY;
-    	Children.insert(Children.end(), { childX, childY });
+    	Children.insert(Children.end(), { {childX, childY} });
 	}
-	
+
 	// choosing the smallest distance for each child
-	for(auto child: Children){
-	    cout << child << endl;
-	    int boxNear= NearestBox(child, Boxes);
-	    cout<<child[0]<<boxNear<<endl;
+	for(int i=0; i<k; i++){
+		int boxNear=0;
+		float distance, min = 99999999999;
+	    for(int j=0; j<n; j++){
+	        distance = sqrt( pow( (Boxes[j][0]-Children[i][0]), 2) + pow( (Boxes[j][1]-Children[i][1]), 2) );
+	        //cout<<j<<endl<<distance<<" < "<<min<<endl;
+	        if (distance < min) {
+	        	min = distance;
+	        	boxNear = j+1;
+			} 
+			//cout<<distance<<endl<<min<<endl;
+		}
+		cout<<"p"<<(char)(i+65)<<" Box"<<boxNear<<endl;
 	}
-	
-	
 	
     return 0;
 

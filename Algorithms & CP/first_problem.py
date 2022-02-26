@@ -5,7 +5,7 @@ boxes = []
 Children = []
 for i in range(B):
     boxes.append(tuple(input().split()))
-K = int(input())
+K = int(input()) 
  
 for i in range(K):
     Children.append(tuple(input().split()))
