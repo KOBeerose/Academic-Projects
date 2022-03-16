@@ -3,4 +3,5 @@
 */application.properties
 .idea/
 .ipynb_checkpoints/
-
+*.exe
+*.java
