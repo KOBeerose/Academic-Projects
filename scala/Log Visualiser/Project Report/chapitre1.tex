@@ -1,0 +1,110 @@
+\chapter{Project architecture}
+
+\setlength{\parindent}{0.5em}
+\setlength{\parskip}{1em}
+\\
+\par 
+-In our projecat instead of only reading from directory using Apache Spark we decided to add another source and stream both of them in real time into our Elasticsearch cluster, The other source will be a Kafka Topic.\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Project architect/general project architecture} 
+\end{center} 
+\caption{General project architecture}
+\label{fig:architcture}
+\end{figure}  \FloatBarrier
+
+%Intro\footnotemark\\
+
+\par
+-The whole idea of the project is to build a datapipline that will stream uncoming logs data from both a directory and a Kafka topic into our Elasticsearch cluster then in the end we will be using kibana to visualise our data and make conlusions about this data all while analaysing it. (See Figure:  \ref{fig:architcture})
+\begin{spacing}{1.2}
+%note en bas de page
+
+\newpage
+\section{Explaining the Kafka part}
+
+\par 
+As we see our python script will be generating logs to a Kafka topic as the producer and at the same time our Apache Spark will be the consumer like this we will be streaming data in real time from the python script directly to our Apache Spark cluster. (See figure \ref{fig:Kafka})
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Project architect/New architecture with Kafka/Project architecture\_ Kafka} 
+\end{center} 
+\caption{Project architecture: Kafka} 
+\label{fig:Kafka}
+\end{figure}  \FloatBarrier
+
+
+
+\section{Use of Docker for Elasticsearch and kibana}
+\par 
+As the application uses a lot of technologies and a lot of outter dependencies as of Kibana, Elasticsearch, Kafka and Spark Apache we decided to use Docker to containrize our applications and Docker compose to run them in internal network.
+
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.8\linewidth]{Pictures/Scala/Project architect/Use of docker/The use of Docker.png}
+\end{center} 
+\caption{Using Docker} 
+\end{figure}  \FloatBarrier
+\\
+
+
+\section{Project preconfiguration: Docker-compose and SBT file's configurations }
+
+
+
+\subsection{Docker compose file for Elasticsearch and kibana}
+
+\par 	
+This file represent our configuration of kibana and Elasticsearch containers, both containers will share the same network and for the environmental variable used on they will be written on the ".env" file that Docker-compose will read while building the application images. 
+As we are seeing we have only one "Elasticsearch" and "Kibana" nodes since we are in the devlopmment phase. While in production other nodes will be added depending on the use case.
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Project architect/Preconfiguration_ SBT and Docker file/docker configuration/docker compose file for kibana and elasticsearch clusters.png} 
+\end{center} 
+\caption{Docker compose file for kibana and Elasticsearch clusters}
+\label{fig:configuration:kibananelastic}
+\end{figure}  \FloatBarrier
+
+
+\newpage
+\subsection{Docker compose file for Kafka}
+
+\par It is a well known Docker-compose file for Kafka that brings up all the containers that we usually use to build a full stack Kafka application.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Project architect/Preconfiguration_ SBT and Docker file/docker configuration/docker compose file for Kafka.png}
+\label{fig:config-Docker-Kafka}
+\end{center} 
+\caption{Docker compose file for Kafka} 
+\end{figure}  \FloatBarrier
+
+\newpage
+\subsection{sbt configuration }
+\par -We use the SBT tool for building our project, it brings up all the dependencies togheter and ask the compiler to compile our application based on a specifc set of confiuration and it need JDK in order to operate:\newline
+=>Our configurations for building tools:
+
+\begin{itemize}
+  \item JDK 1.8 Correto by amazon
+  \item sbt version 1.2.3
+\end{itemize}
+\vspace{1cm}
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Project architect/Preconfiguration_ SBT and Docker file/sbt configuration/sbt file} 
+\end{center} 
+\caption{Sbt file} 
+\end{figure}  \FloatBarrier
+\vspace{1cm}
+
+	
+	
+		
+
+
+
+\end{spacing}

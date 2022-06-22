@@ -1,0 +1,121 @@
+\chapter{First method data source reading from files}
+%Intro\footnotemark\\
+\par 
+Now our application is configured and ready to bootstrap and run, as we have seen in the first section our architecture will have 2 data sources one using is gonna be the directory and the other one is the Kafka topic, for now we will be seeing how we will set our Apache Spark application to stream the directory new appended lines that our python script generate to Elasticsearch.
+\begin{spacing}{1.2}
+%note en bas de page
+\section{Generating the data }
+\par 
+The first thing to do in datapipline is collecting the data but in our case, the data is generated in python script. And we will store it into the temporary directory(so when a restart happen all the generated data will be deleted thus saving us a lot of space). see figure \ref{fig:python-file-gen}
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Generating the data/code snippet_ Python script that generate data into the file} 
+\end{center} 
+\caption{Code snippet - Python script that generate data into the file} 
+\label{fig:python-file-gen}
+\end{figure}  \FloatBarrier
+\\
+\section{Tailing the folder in realtime }
+\par We know that the technologies we are using for streaming is Apache Spark streaming and Apache mechanisms for distributed calculation go against reading new lines added to a new file and our generated data will be appended to the same file, to solve this problem we will use the "tail" command and we will tile our file into multiple files; every time when we reach 1000 lines a new file will be created on the directory that Spark reads from whit the new 1000 line as content and so on. (See figure: 
+\ref{fig:file-tailor})
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Tailing the folder in realtime/script for tailing} 
+\end{center} 
+\caption{Script for tailing} 
+\label{fig:file-tailor}
+\end{figure}  \FloatBarrier
+\\
+\section{Reading data in Spark and store it into Elasticsearch}
+\par 
+We start by creating a Spark session and setting up the configuration of Elasticsearch node, note that all configuration is located in the application.conf file to centralize our application config; we can change that configuration if we run our application using custom environmental variables.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Reading data in spark and store it into elasticsearch_/appconfig.png} 
+\end{center} 
+\caption{Application configuration} 
+\end{figure}  \FloatBarrier
+\vspace{1cm}
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Reading data in spark and store it into elasticsearch_/creating spark session.png} 
+\end{center} 
+\caption{Creating Spark session} 
+\end{figure}  \FloatBarrier
+\\
+
+\par 
+Create a schema that explain to Spark how to read and format the data into the stream, thus knowing how it will be formated for getting stored in the Elasticsearch index:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Reading data in spark and store it into elasticsearch_/creating the schema} 
+\end{center} 
+\caption{Creating the schema} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Start streaming the directory; by giving Spark the location, how the file should be getting read (as CSV in that case) and finally the delimiter that Spark should use when formatting the input:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Reading data in spark and store it into elasticsearch_/streaming the files in the directory} 
+\end{center} 
+\caption{Streaming the files in the directory} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Store every new line streamed to Elasticsearch in the logs index:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Reading data in spark and store it into elasticsearch_/Store every new line streamed into Elasticsearch in the logs index} 
+\end{center} 
+\caption{Store every new line streamed into Elasticsearch in the logs index} 
+\end{figure}  \FloatBarrier
+\\
+\newpage
+\section{Running the Elasticsearch and kibana containers }
+\par Since we are using Docker-compose we can run the containers that much of an ease as writing 2 lines of code since we aleardy did the configurations. (see here \ref{fig:configuration:kibananelastic})
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/Running the elasticsearch and kibana containers/running the kibana and elasticsearch containers.png} 
+\end{center} 
+\caption{Tunning the kibana and Elasticsearch containers} 
+\end{figure}  \FloatBarrier
+\\
+\section{Results }
+\par As we can see the python script was written to one script but using the file-tailor.sh we could tail our file into multiple files and in real time (every time new 1000 line the script will create a file and append the time to the name of the file):
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/results/generated logs file} 
+\end{center} 
+\caption{Generated logs file} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Looking at the terminal we can tell that the data is being written to Elasticsearch successfully.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/results/results_ Data been succefuly streamed into elasticseach} 
+\end{center} 
+\caption{Results - Data been succefuly streamed into elasticseach} 
+\end{figure}  \FloatBarrier
+\\
+
+\par We can proof that by querying the REST API that Elasticsearch provide, we can see our data entries there:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/First method data source reading from files/results/Querying the logs-data index from Elasticsearch REST API} 
+\end{center} 
+\caption{Querying the logs-data index from Elasticsearch REST API} 
+\end{figure}  \FloatBarrier
+\\
+
+\end{spacing}

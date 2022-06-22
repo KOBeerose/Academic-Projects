@@ -1,0 +1,205 @@
+\chapter*{Introduction to the Used Technologies}
+\addcontentsline{toc}{chapter}{Introduction to the Used Technologies}
+\begin{spacing}{1.5}
+
+\par In this subsection of our repport we will go over each one of the technologies that we used as followed:
+
+- \textbf{Scala}.
+- \textbf{Spark streaming}.
+- \textbf{Elasticsearch}.
+- \textbf{Kibana}.
+- \textbf{Docker}.
+- \textbf{Kafka}.
+\section{Scala}
+\subsection{What is Scala ?}
+\par  \textbf{Scala} means Scalable language. It is an object-oriented programming language multi-paradigm. The \textbf{Scala} language includes features of functional programming and object-oriented programming (in Scala, each value is an object.). It is a statically typed language. Its source code is compiled to bytecode and executed by the Java Virtual Machine (JVM).
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.6\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Scala Logo}
+\end{center} 
+\caption{Scala} 
+\end{figure}  \FloatBarrier
+\\
+\par  \textbf{Scala} is used in data processing, distributed computing, and Web development. It powers the data engineering infrastructure of many companies. It is designed to grow with the demands of its user, from writing small scripts to building a massive system of data processing.
+\\ 
+\par  \textbf{Scala} uses Java Virtual Machine (JVM) to run the bytecode. Its code is compiled to bytecode and executed by Java Virtual Machine. So you don't need only JVM to start development with.
+Scala can also use all Java classes and allows us to create our custom classes.
+\\
+\par The \textbf{Scala} language is mainly used by software engineers and data engineers. You will see some data scientists using it with Apache Spark to process huge data.
+
+
+\subsection{How is Scala different from Java?}
+\begin{itemize}
+   \item \textbf{Nested Functions} : This allows us to define a function inside
+from another function.
+   \item \textbf{Closures} : A function whose return value depends on the variables
+declared outside the function.
+   \item \textbf{Each value is an object}.
+   \item \textbf{Each operation is a method call}.
+\end{itemize}   
+
+\newpage 
+ \section{Spark}  
+ \subsection{What is Spark Streaming?}
+ \par  \textbf{Spark Streaming} is an extension to Spark's core API that allows a Scalable, high-throughput, fault-tolerant stream processing of data streams live. Data can be ingested from many sources such as Kafka, Kinesis, or TCP sockets, and can be processed using algorithms complexes expressed with high-level functions such as map, reduce, join and window. Finally, the processed data can be transferred to systems files, databases, and live dashboards. In fact, you can apply machine learning and processing algorithms to Spark graphs on data streams.
+\\ 
+ 
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Apache Spark Streaming processing.png}
+\end{center} 
+\caption{Apache Spark Streaming processing} 
+\end{figure}  \FloatBarrier
+\\
+
+\par Internally it works as follows. \textbf{Spark Streaming} receives streams from live input data and divides the data into batches, which are then processed by the Spark engine to generate the final result stream in batches.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Input data stream batched with the Spark engine.png}
+\end{center} 
+\caption{Input data stream batched with the Spark engine} 
+\end{figure}  \FloatBarrier
+\\
+\par \textbf{Spark Streaming} provides a high-level abstraction called discretized streaming or DStream, which represents a continuous stream of data. DStreams can be created either from input data streams from sources such as Kafka and Kinesis, or by applying high-level operations on other DStreams. Internally, a DStream is represented as a sequence of RDDs.
+\newpage
+
+\section{Elasticsearch} 
+ \subsection{What is Elasticsearch?}
+ \par  \textbf{Elasticsearch} is a free and open distributed search and analytics engine for any type of data, including textual, numeric, geospatial, structured, and unstructured. Elasticsearch was built from
+Apache Lucene was launched in 2010 by Elasticsearch N. V. (now called Elastic). Renowned for its simple REST APIs, distributed nature, speed, and Scalability, Elasticsearch is the core component of the Elastic Stack, a set of free and open tools for data ingestion, enrichment,
+storage, analysis, and visualization. Commonly called the ELK Suite (for Elasticsearch, Logstash, and Kibana), the Elastic Stack now includes a rich collection of lightweight transfer agents, called Beats Agents, for sending data to Elasticsearch.
+ 
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.7\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Elasticsearch Logo.png}
+\end{center} 
+\caption{Elasticsearch} 
+\end{figure}  \FloatBarrier
+\\
+
+\subsection{How does Elasticsearch work?}
+\par You can send data to \textbf{Elasticsearch} as JSON documents using the API or ingest tools such as Logstash and Amazon Kinesis Firehose. Elasticsearch automatically stores the original document and adds a searchable reference to the document in the clustered index. We can then
+search and retrieve the document using the Elasticsearch API. We can also use Kibana, a visualization tool, with Elasticsearch to visualize your data and build interactive dashboards.
+\\
+
+\subsection{What is the main use of Elasticsearch?}
+\par \textbf{Elasticsearch} is an open-source full-text search and analytics engine highly Scalable source. It allows you to store, search and analyze large volumes of data quickly and in near real-time. It is generally
+used as the underlying engine/technology that powers applications that have complex search features and requirements.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Lifecycle of information contained in log files.png}
+\end{center} 
+\caption{Lifecycle of information contained in log files} 
+\end{figure}  \FloatBarrier
+\\
+
+\newpage
+
+\section{Kibana} 
+ \subsection{What is Kibana?}
+ \par  \textbf{Kibana} is a data visualization and exploration tool used to log and time-series analytics, monitoring
+applications, and operational intelligence. It offers powerful features and is easy to use such as histograms, line graphs, pie charts, heatmaps, and integrated geospatial support. He gives
+also tight integration with Elasticsearch, analytics, and popular search, making Kibana the default choice for viewing data stored in Elasticsearch.
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.4\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Kibana Logo.png}
+\end{center} 
+\caption{Kibana} 
+\end{figure}  \FloatBarrier
+
+\subsection{What are the advantages of Kibana?}
+\begin{itemize}
+   \item \textbf{INTERACTIVE CHARTS}:\\
+\textbf{Kibana} offers intuitive charts and reports that you can use to interactively navigate large amounts of log data. You can dynamically drag windows timelines, zoom in and out on subsets of specific data, and explore reports to extract insights usable from your data.\vspace{.25cm}
+   \item \textbf{MAPPING SUPPORT}:\\
+Kibana comes with powerful geospatial features that allow you to allow information to be layered seamlessly maps to your data and visualize the results on maps.\vspace{.25cm}
+   \item \textbf{PRE-INTEGRATED AGGREGATIONS AND FILTERS}:\\
+With Kibana's pre-built aggregations and filters, you can run various analytics such as histograms, queries "top N" and trends in just a few clicks.\vspace{.25cm}
+   \item \textbf{EASY ACCESS DASHBOARDS}:\\
+You can easily configure dashboards and reports and share them with other people. You only need a browser to view and explore the data.
+\end{itemize}   
+\newpage
+
+\section{Docker} 
+ \subsection{What is Docker?}
+ \par \textbf{Docker} is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+\\ 
+ 
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.7\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Docker logo.png}
+\end{center} 
+\caption{Docker} 
+\end{figure}  \FloatBarrier
+\\
+
+\subsection{What are the advantages of Docker ?}
+\begin{itemize}
+   \item \textbf{Key Benefits of Docker Containers.}
+    
+    The crucial word here is: agility. When we say ‘agility’ it basically refers to getting features and updates to customers or clients faster. Docker is an important tool when you’re creating the groundwork for any modern application. \vspace{.25cm}
+   \item \textbf{Consistent and Isolated Environment.}
+    
+    Using containers developers can create predictable environments that are isolated from other apps. Regardless of where the app is deployed, everything remains consistent and this leads to massive productivity: less time debugging, and more time launching fresh features and functionality for users.\vspace{.25cm}
+   \item \textbf{Cost-effectiveness with Fast Deployment.}
+    
+    Docker-powered containers are known for decreasing deployment time to seconds. That’s an impressive feat by any standard. Traditionally, things like provisioning, getting the hardware up and running would take days or more.\vspace{.25cm}
+   \item \textbf{Mobility – Ability to Run Anywhere.}
+    
+    Docker images are free of environmental limitations, and that makes any deployment consistent, movable (portable), and Scalable. Containers have the added benefit of running anywhere, providing it is targeted at the OS (Win, Mac OS, Linux, VMs, On-prem, in Public Cloud), which is a huge advantage for both development and deployment. \vspace{.25cm}
+   \item \textbf{Repeatability and Automation.}
+    
+    You are building code with repeatable infrastructure and config. This speeds up the development process tremendously. It must be pointed out that Docker images are often small. Consequently, you get fast delivery and, again, shorter deployment for new application containers.\vspace{.25cm}
+   \item \textbf{Test, Roll Back and Deploy.}
+    
+    As we said, Environments remain more consistent in Docker, from start to finish. Docker images are easily versioned, which makes them easy to roll back if you need to do so. If there is a problem with the current iteration of the image, just roll back to the older version.\vspace{.25cm}
+   \item \textbf{Flexibility.}
+    
+    The Docker method of containerization allows you to segment an application so you can refresh, clean up, repair without even taking down the entire app. Furthermore, with Docker you can build an architecture for applications comprising of small processes that communicate with each other via APIs.
+\end{itemize}   
+
+\newpage
+
+\section{Kafka} 
+ \subsection{What is Apache Kafka?}
+ \par  \textbf{Apache Kafka} is a distributed data store optimized for ingesting and processing streaming data in real-time. Streaming data is data that is continuously generated by thousands of data sources, which typically send the data records in simultaneously. A streaming platform needs to handle this constant influx of data, and process the data sequentially and incrementally.
+\\ 
+ 
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=.7\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Kafka Logo.png}
+\end{center} 
+\caption{Kafka} 
+\end{figure}  \FloatBarrier
+\\
+
+\subsection{What is Apache Kafka used for ?}
+\par \textbf{Kafka} provides three main functions to its users:
+\begin{itemize}
+   \item Publish and subscribe to streams of records.\vspace{.25cm}
+   \item Effectively store streams of records in the order in which records were generated.\vspace{.25cm}
+   \item Process streams of records in real time.\vspace{.25cm}
+\end{itemize}   
+
+\par \textbf{Kafka} is primarily used to build real-time streaming data pipelines and applications that adapt to the data streams. It combines messaging, storage, and stream processing to allow storage and analysis of both historical and real-time data.\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Introduction to the Used Technologies/Apache Kafka architecture.png}
+\end{center} 
+\caption{Apache Kafka architecture} 
+\end{figure}  \FloatBarrier
+\\
+
+\newpage
+
+
+  
+\end{spacing}
+
+%changer le format des subsections, subsubsections pour apparaittre sans le num de chapitre
+\makeatletter
+\renewcommand{\thesubsection}{\@arabic\c@subsection}
+\makeatother

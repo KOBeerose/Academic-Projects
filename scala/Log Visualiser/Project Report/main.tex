@@ -1,0 +1,134 @@
+\documentclass[a4paper]{report}
+
+%====================== PACKAGES ======================
+
+\usepackage[french]{babel}
+\usepackage[utf8x]{inputenc}
+%pour gérer les positionnement d'images
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {figures/} }
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{url}
+%pour les informations sur un document compilé en PDF et les liens externes / internes
+\usepackage{hyperref}
+%pour la mise en page des tableaux
+\usepackage{array}
+\usepackage{tabularx}
+%pour utiliser \floatbarrier
+%\usepackage{placeins}
+%\usepackage{floatrow}
+%espacement entre les lignes
+\usepackage{setspace}
+%modifier la mise en page de l'abstract
+\usepackage{abstract}
+%police et mise en page (marges) du document
+\usepackage[T1]{fontenc}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+%Pour les galerie d'images
+\usepackage{subfig}
+
+\usepackage[section]{placeins}
+
+\usepackage{bibspacing}
+\setlength\bibitemsep{2.5\itemsep}
+
+
+
+%====================== INFORMATION ET REGLES ======================
+
+%rajouter les numérotation pour les \paragraphe et \subparagraphe
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\hypersetup{							% Information sur le document
+pdfauthor = {EL BATOURI Badr-eddine, ElGHABI Taha},			
+% Auteurs
+pdftitle = {Installation et Configuration d’Openstack},			
+% Titre du document
+pdfsubject = {Cloud Computing},	
+% Sujet
+pdfkeywords = {Tag1, Tag2, Tag3, ...},	
+% Mots-clefs
+pdfstartview={FitH}
+}
+% ajuste la page à la largueur de l'écran
+%pdfcreator = {MikTeX},% Logiciel qui a crée le document
+%pdfproducer = {}} % Société avec produit le logiciel
+
+\documentclass{report}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Huge}
+
+\titlespacing{\chapter}{0cm}{0cm}{1cm}
+
+\usepackage{lipsum}  
+
+
+%======================== DEBUT DU DOCUMENT ========================
+
+\begin{document}
+
+%régler l'espacement entre les lignes
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%page de garde
+\input{./title.tex}
+
+
+
+
+
+
+%\thispagestyle{empty}
+
+\setcounter{page}{3}
+
+\newpage
+%\thispagestyle{empty}
+\tableofcontents
+%\thispagestyle{empty}
+%\thispagestyle{empty}
+\listoffigures
+%ne pas numéroter le sommaire
+
+\input{./intro.tex}
+\newpage
+
+%espacement entre les lignes d'un tableau
+\renewcommand{\arraystretch}{1.5}
+
+%====================== INCLUSION DES PARTIES ======================
+
+
+
+%recommencer la numérotation des pages à "1"
+%\setcounter{page}{0}
+\newpage
+
+\input{./Introduction to the Used Technologies.tex}
+
+\input{./chapitre1.tex}
+
+\input{./chapitre2.tex}
+ 
+\input{./chapitre3.tex}
+
+\input{./chapitre4.tex}
+
+\input{./annexes.tex}
+
+
+%récupérer les citation avec "/footnotemark"
+\newpage
+\nocite{*}
+\bibliographystyle{unsrt}
+%inclusion de la biblio
+\bibliography{biblio.bib}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\end{document}

@@ -1,0 +1,177 @@
+\chapter{Second method using Kafka for streaming}
+%Intro\footnotemark\\
+\par We have seen the first method, now we are trying to achieve the same results but based on a Kafka topic.
+\begin{spacing}{1.2}
+%note en bas de page
+\section{Explaining the architecture }
+\par 
+This time the data-source want to be a file in a directory since in real-life usage the data is not collected from files that live in the same machine as the Apache Spark node; to make a real-life example we decided to use Kafka broker; Kafka will be the connection point between Apache Spark and the python script that generate the data. And now we will explain how to do that.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Explaining the architecture/Project architecture_ Kafka} 
+\end{center} 
+\caption{Project architecture - Kafka} 
+\end{figure}  \FloatBarrier
+\\
+\section{Settuping up Kafka }
+\subsection{Step1: Creating a Kafka broker }
+\par 
+The broker is the server that will be transferring data between the producer(The python script and the consumer the Apache Spark cluster), since we are using Docker we will create our broker using the Docker-compose on the configuration file that we already explained in section (See here: \ref{fig:config-Docker-Kafka}).
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Settuping up KAFKA/Step1_ Creating a kafka broker/Kafka broker creation} 
+\end{center} 
+\caption{Kafka broker creation} 
+\end{figure}  \FloatBarrier
+\\
+\subsection{Step2 - Creating the logs topic}
+
+
+\par The topic is where our producer will be writing messages(The python log generator script), after messages will be written on the topic the consumer will start consuming these messages (Apache Spark).
+
+
+\\
+\par
+Since we are using Kafka for learning purposes we will be using a UI for Kafka called CONDUCTO to help us visualize the process:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Settuping up KAFKA/Step1_ Creating a kafka broker/creating the topic_ step1.png} 
+\end{center} 
+\caption{Creating the topic - step1} 
+\end{figure}  \FloatBarrier
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Settuping up KAFKA/Step1_ Creating a kafka broker/creating the topic_ step2} 
+\end{center} 
+\caption{Creating the topic - step2} 
+\end{figure}  \FloatBarrier
+\\
+
+\par The topic been successfully created.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Settuping up KAFKA/Step1_ Creating a kafka broker/creating the topic_ succesfully created} 
+\end{center} 
+\caption{Creating the topic - succesfully created} 
+\end{figure}  \FloatBarrier
+\\
+
+
+
+\section{Serializing messages to Kafka }
+
+\par Now our Kafka broker and topic are ready to use, the idea is to send a message from the python script to Apache we will be using our python script as producer that produce data to the topic and Apache Spark will consume this data continuously and as the broker is alive Apache Spark will keep listening for any new messages on the broker.
+\subsection{Step-1: Configure the producer_ }
+
+
+\par We should serialize the message to the Kafka logs-data topic through our Kafka broker and since Kafka brokers does not use strings or any other type of variables but rather they use bytes to communicate we should configure our producer to do so.
+
+
+\par In these line of codes we are configuring our producer to serialize our data as JSON that is converted to a string and then to byte.
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Serializing messages to Kafka/Step-1_Configure the producer_/creating the producer in python.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Creating the topic - step1} 
+\end{figure}  \FloatBarrier
+\\
+
+
+\subsection{Step-2: Send messages to the broker and store them in the logs-data topic }
+\par Now we send our message to the broker and more specifically we store it in the topic:
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Serializing messages to Kafka/Step-2_Send messages to the broker and store them in the logs-data topic_/perparing and sending the data to the logs-data topic.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Preparing and sending the data to the logs-data topic} 
+\end{figure}  \FloatBarrier
+\\
+
+\newpage
+\subsection{Step-3: verify if any new messages are sent on the topic }
+\par As we can see there is new message appearing on the topic and they are ready to get consumed by Apache Spark.
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Serializing messages to Kafka/Step-3_results( new messages on the topic)/new messages appears on the topic.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Creating the topic - step1} 
+\end{figure}  \FloatBarrier
+
+
+
+\section{Streaming to Elasticsearch using Apache Spark }
+
+\par Now the data is being stored and produced in real-time on the topic now we should consume this data in Apache Spark, the steps are the same as the last method (See here: \ref{fig:first-methode}) the only thing that change is the stream of uncoming messages should be casted to a string since they are originaly been transmited/consumed as btye of code and also the approach of reading from a csv differe here because here we have a json object in string format and we should parse through it.
+
+\\
+
+\subsection{Step1 - Start a Spark session }
+
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Streaming to elasticsearch using Apache spark/Step1_ Start a spark session/test.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Starting a Spark session and configuring Elasticsearch session} 
+\end{figure}  \FloatBarrier 
+
+\subsection{Step2: Start streaming from Kafka}
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Streaming to elasticsearch using Apache spark/Step2_ Start streaming from kafka/reading steam of messages from the logs-data topic.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Step2: reading steam of messages from the logs-data topic} 
+\end{figure}  \FloatBarrier
+
+
+
+
+\subsection{Step3: Casting streamed messages to string }
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Streaming to elasticsearch using Apache spark/Step3_ Casting streamed messages to string/cast upcoming messages to string.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Cast upcoming messages to string} 
+\end{figure}  \FloatBarrier
+\par Here we are casting the upcoming message into string variable because Kafka brokers communicate only using bytes.
+
+
+\subsection{Step4:schematize and prepare data}
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Streaming to elasticsearch using Apache spark/Step4_schematize and prepare data/schematize and prepare data to be sent into elasticsearch logs index.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Step4: schematize and prepare data to be sent into Elasticsearch logs index} 
+\end{figure}  \FloatBarrier
+
+
+\subsection{Step5: Streaming treated streamed data to Elasticsearch}
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Second method using Kafka for streaming/Streaming to elasticsearch using Apache spark/step5_ Streaming traited streamed data to elasticsearch/stream data to elasticsearch.png}
+\end{center} 
+\label{fig:broker-Kafka-1}
+\caption{Step5: Streaming treated streamed data to Elasticsearch} 
+\end{figure}  \FloatBarrier
+
+\end{spacing}
+
+

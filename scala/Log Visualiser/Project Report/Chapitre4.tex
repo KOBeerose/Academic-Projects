@@ -1,0 +1,169 @@
+\chapter{Kibana - Configuration and use cases}
+%Intro\footnotemark\\
+\par Now both sources are writing to our Elasticsearch and our dataset is being populated in real-time as the python scripts are generating data either by Kafka or in the file and the shell script informing the file Apache Spark is reading data streamed in both of them the directory and Kafka topic. Now we should make use of this data and the tool that we will be using is Kibana since it has a direct integration whit Elasticsearch we can use Kibana as our visualization platform whit a powerful custom query system that allows us to visualize our data thus making conclusions about it.
+\begin{spacing}{1.2}
+%note en bas de page
+\section{Configuring Kibana }
+\par We start by logging to Kibana web UI using the host, port, username, and password (we had already configured these in the Docker-compose file see figure: \ref{fig:configuration:kibananelastic}). 
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_002} 
+\end{center} 
+\caption{Kibana UI} 
+\end{figure}  \FloatBarrier
+\\
+\newpage
+\par  Now we should create our index pattern; it explains the structure of Elasticsearch index(logs-data in our case) to Kibana for it to be able to read data from Elasticsearch.  
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_003} 
+\end{center} 
+\caption{Configuration step1: } 
+\end{figure}  \FloatBarrier
+\\
+
+\par Now we validate our logs-data index pattern and create it.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_004} 
+\end{center} 
+\caption{Configuration step2: } 
+\end{figure}  \FloatBarrier
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_005} 
+\end{center} 
+\caption{Configuration step3: } 
+\end{figure}  \FloatBarrier
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_006} 
+\end{center} 
+\caption{Configuration step4: } 
+\end{figure}  \FloatBarrier
+\\
+
+\newpage
+
+
+\par Our pattern being successfully created.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_007} 
+\end{center} 
+\caption{Configuration step5:} 
+\end{figure}  \FloatBarrier
+\\
+\par Now we can visualize our logs-data indexe from Elasticsearch.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Configuring Kibana/Selection_008} 
+\end{center} 
+\caption{Configuration step6:} 
+\end{figure}  \FloatBarrier
+
+\\
+\section{Kibana real-world use case: Visualizing and analysing logs data}
+
+
+\par Now we can visualize data that reside on logs-data index whit the powerful set of tools that Kibana provide for visualizing, we will put some real-world scenario to provide a general vision on the world of building data pipelines and the benefit that the ELK and Apache spark stack can provide us when it comes to streaming and visualizing data and how these visualizations can help us make some conclusion about our data.
+
+\par Let's imagine that this log data it's data that service is writing for every client that tries to reach a set of websites and we want to have a general idea about it we will do some visualization of our data using Kibana to do so.
+
+\subsection{Some visualizations and conclusions about them }
+
+\\
+\par Here we can look at the most HTTP status code our clients have and we can make some assumptions, if let's say the most HTTP request we have is 200, it will mean that most of our requests have been successful to reach the server and server gives us a valid response so the headers and the body were not altered by a third party, otherwise, if we have a lot of HTTP:400 as a response it means that a lot of our requests are bad an this is an indication for having a problem when sending requests and either the body or the headers are being altered before sending the requests.
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/Number of request per http code status} 
+\end{center} 
+\caption{Number of request per http code status} 
+\end{figure}  \FloatBarrier
+\\
+
+\newpage
+
+\\
+\par Here we compare the the successful requests and the requests that been not successful; here there is a strong indication about a problem in one of the OSI layers since the requests that were successful are much lesser than the ones that had a problem.
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/BadrRequest vs good requests} 
+\end{center} 
+\caption{Bad Request vs good requests} 
+\end{figure}  \FloatBarrier
+\\
+
+
+
+
+
+\par Here we can tell which site is being used a lot by our client since it have the biggest number of requests.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/Number of requests classed by sites} 
+\end{center} 
+\caption{Number of requests classed by sites} 
+\end{figure}  \FloatBarrier
+\\
+
+
+\par 
+Here we compare the successful requests and the unsuccessful one; here there is a strong indication about a problem in one of the OSI layers since the successful requests are much lesser than the ones that had a problem.
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/succesful requests vs unseccesful requests} 
+\end{center} 
+\caption{Successful requests vs unsuccessful requests} 
+\end{figure}  \FloatBarrier
+\\
+
+
+\par Here we are visualizing the number of requests that have a specific HTTP status code and as we are seeing they are equally distributed and this is normal since the data being generated using python are equally and normally distributed(The random function random variable follow a normal and Gaussian law).
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/HTTP status codes distribution} 
+\end{center} 
+\caption{HTTP status codes distribution} 
+\end{figure}  \FloatBarrier
+\newpage
+
+\par Here we are analyzing the Flume.Apache.org requests if our system working good and the most HTTP status of our requests that sent to this site is not 200 we can tell that this site has a problem and if we classify the Ip's by location we can also tell that some of the countries have a problem connecting to this site. 
+\\
+
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/number of requests per http status code for flume.Apache.org} 
+\end{center} 
+\caption{Number of requests per http status code for flume.Apache.org} 
+\end{figure}  \FloatBarrier
+\\
+
+
+\par Here we can tell which site had the most successfully requests and we can by example ask them what architecture they are using to solve other sites that have a lesser number of requests to help them solve their problems.
+\\
+\begin{figure}[!htb] 
+\begin{center} 
+\includegraphics[width=1\linewidth]{Pictures/Scala/Kibana_ Configuration and use cases/Kibana real world use cases_ Visualizing lgos data and analysing it/number of succesful request per site} 
+\end{center} 
+\caption{Number of succesful request per site} 
+\end{figure}  \FloatBarrier
+\\
+
+\end{spacing}
+
