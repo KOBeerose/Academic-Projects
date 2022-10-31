@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nom" type="id">1</item>
+    <item name="note" type="id">1</item>
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Concept of service</string>
+    <string name="TexteExplicatif">Explication</string>
+    <string name="demarrer_service">Service started</string>
+    <string name="arreter_service">Service stopped</string>
+</resources>
