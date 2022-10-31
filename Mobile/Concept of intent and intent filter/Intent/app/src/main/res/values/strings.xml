@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Intent</string>
+    <string name="commentaire" >Intent Explicite et implicite</string>
+    <string name="intentexplicite" >Intent Explicite</string>
+    <string name="intentimplicite" >Intent implicite</string>
+    <string name="explicit_intent_2">Explicit Intent 2</string>
+    <string name="implicit_different">Different Implicit intent</string>
+</resources>
