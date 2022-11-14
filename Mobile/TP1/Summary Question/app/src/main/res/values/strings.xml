@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name"> 414 </string>
+    <string name="commentaire"> Tmenyik App </string>
+    <string name="intentexplicite"> Exit </string>
+    <string name="intentimplicite"> Link </string>
+    <string name="click_me"> Tap </string>
+    <string name="t_0"> 0 </string>
+    <string name="TexteExplicatif">  </string>
+    <string name="demarrer_service"> Start Rington </string>
+    <string name="arreter_service"> Stop </string>
+
+</resources>
