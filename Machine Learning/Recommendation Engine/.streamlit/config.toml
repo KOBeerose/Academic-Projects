@@ -1,0 +1,7 @@
+[theme]
+base="Custom Theme"
+primaryColor="#00ffc8"
+backgroundColor="rgb(14, 17, 23)"
+secondaryBackgroundColor="rgb(38, 39, 48)"
+textColor="#fff"
+font="poppins"

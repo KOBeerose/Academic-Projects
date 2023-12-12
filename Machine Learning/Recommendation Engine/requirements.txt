@@ -1,0 +1,10 @@
+scipy
+requests
+numpy
+pandas
+scikit-learn
+streamlit
+pandas_profiling
+wordcloud
+pywaffle
+squarify
