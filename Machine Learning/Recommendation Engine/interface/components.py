@@ -1,6 +1,6 @@
 import streamlit as st
 import constants as const
-from script.utils import movie_link, fetch_poster
+from helper.utils import movie_link, fetch_poster
 
 
 def initialize_movie_widget(cfg):

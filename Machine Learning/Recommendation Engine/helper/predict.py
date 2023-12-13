@@ -2,7 +2,7 @@ import scipy
 import pickle
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 import constants as const
-from script.utils import get_recommendations
+from helper.utils import get_recommendations
 
 
 def weighted_average_based_recommendations():

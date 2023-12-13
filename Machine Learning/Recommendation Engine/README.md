@@ -7,7 +7,7 @@ Feel free to fork the repository and make it for any other product recommendatio
 ### **Demo**
 here is the [https://movie-recommendation.streamlit.app](https://movie-recommendation.streamlit.app)
 
-![visualization](assets/movie_recommendation.gif)
+
 
 ## Running locally
 ### use conda env(recommended)

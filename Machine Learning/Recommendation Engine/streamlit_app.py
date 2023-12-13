@@ -1,10 +1,12 @@
-import pickle
 import streamlit as st
 import streamlit.components.v1 as components
-from script.recommender import contend_based_recommendations, weighted_average_based_recommendations, contend_based_recommendations_extra
-from config import score_based_cfg, content_based_cfg, content_extra_based_cfg
-from UI.widgets import initialize_movie_widget, show_recommended_movie_info, show_info
+import pickle
+
 import constants as const
+from content import score_based_cfg, content_based_cfg, content_extra_based_cfg
+from interface.components import initialize_movie_widget, show_recommended_movie_info, show_info
+from helper.predict import contend_based_recommendations, weighted_average_based_recommendations, contend_based_recommendations_extra
+
 st.set_page_config(page_title="Recommender system", layout="wide")
 
 
