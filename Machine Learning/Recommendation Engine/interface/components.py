@@ -1,43 +1,40 @@
-import streamlit as st
-import constants as const
-from helper.utils import movie_link, fetch_poster
+import streamlit as st_lib
+import constants as const_lib
+from helper.utils import fetch_movie_link, get_movie_poster
 
+def create_movie_widget(config):
+    """This function generates empty slots for all recommended movies
+    and adds description and title from the corresponding config file"""
+    with st_lib.expander(config["title"]):
+        st_lib.markdown(config["description"])
 
-def initialize_movie_widget(cfg):
-    """here we create empty blanks for all recommended movies
-    and add description and title from appropriate config file"""
-    with st.expander(cfg["title"]):
-        st.markdown(cfg["description"])
+    movie_layouts = st_lib.columns(const_lib.RECOMMENDATION_NUMBER)
+    for layout in movie_layouts:
+        with layout:
+            st_lib.empty()
 
-    movie_cols = st.columns(const.MOVIE_NUMBER)
-    for c in movie_cols:
-        with c:
-            st.empty()
+    return movie_layouts
 
-    return movie_cols
+def show_basic_info(movie_layouts, display_score):
+    """This function displays a simple description"""
+    for layout in zip(movie_layouts):
+        with movie_layouts:
+            st_lib.markdown(f"<a style='display: block; text-align: center;' href='{l}'>{t}</a>", unsafe_allow_html=True)
+            st_lib.image(p)
+            if display_score:
+                st_lib.write(round(s, 3))
 
-def show_info(movie_cols, show_score):
-    """in this function we show simple description"""
-    for c in zip(movie_cols):
-        with movie_cols:
-            st.markdown(f"<a style='display: block; text-align: center;' href='{l}'>{t}</a>", unsafe_allow_html=True)
-            st.image(p)
-            if show_score:
-                st.write(round(s, 3))
-
-def show_recommended_movie_info(recommended_movies, movie_cols, show_score):
-    """in this function we get all data what we want to show and put in on webpage"""
-    movie_ids = recommended_movies["movieId"]
+def display_movie_info(recommended_movies, movie_layouts, display_score):
+    """This function fetches all the data we want to display and places it on the webpage"""
+    movie_identifiers = recommended_movies["movieId"]
     movie_titles = recommended_movies["title"]
-    movie_scores = recommended_movies["score"]
-    posters = [fetch_poster(i) for i in movie_ids]
-    links = [movie_link(i) for i in movie_ids]
-    for c, t, s, p, l in zip(movie_cols, movie_titles, movie_scores, posters, links):
-        with c:
+    movie_ratings = recommended_movies["score"]
+    posters = [get_movie_poster(i) for i in movie_identifiers]
+    links = [fetch_movie_link(i) for i in movie_identifiers]
+    for layout, t, s, p, l in zip(movie_layouts, movie_titles, movie_ratings, posters, links):
+        with layout:
             with open('style.css') as f:
-                st.markdown(f"<a style='display: block; text-align: center; color: #00ffc8;' href='{l}'>{t}</a>", unsafe_allow_html=True)
-                st.image(p)
-                if show_score:
-                    st.write(round(s, 3))
-                
-                
+                st_lib.markdown(f"<a style='display: block; text-align: center; color: #00ffc8;' href='{l}'>{t}</a>", unsafe_allow_html=True)
+                st_lib.image(p)
+                if display_score:
+                    st_lib.write(round(s, 3))

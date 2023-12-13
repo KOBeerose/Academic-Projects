@@ -1,51 +1,50 @@
-import streamlit as st
-import streamlit.components.v1 as components
-import pickle
+import streamlit as st_lib
+import streamlit.components.v1 as components_lib
+import pickle as pickle_lib
 
-import constants as const
-from content import score_based_cfg, content_based_cfg, content_extra_based_cfg
-from interface.components import initialize_movie_widget, show_recommended_movie_info, show_info
-from helper.predict import contend_based_recommendations, weighted_average_based_recommendations, contend_based_recommendations_extra
+import constants as const_lib
+from content import score_cfg, content_cfg, content_plus_cfg
+from interface.components import  create_movie_widget, show_basic_info, display_movie_info
+from helper.predict import content_recommendations, weight_avg_recommendations, content_recommendations_plus
 
-st.set_page_config(page_title="Recommender system", layout="wide")
+# Set the page configuration
+st_lib.set_page_config(page_title="Recommender system", layout="wide")
 
+# Apply custom CSS
+with open('style.css') as style_file:
+    st_lib.markdown(f'<style>{style_file.read()}</style>', unsafe_allow_html=True)
 
-# add styling
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# Load the main movie data
+with open('data/movie_df.pickle', 'rb') as data_file:
+    movie_data = pickle_lib.load(data_file)
 
-# load main movie dataframe
-with open('data/movie_df.pickle', 'rb') as handle:
-    movie = pickle.load(handle)
+# Display the main title
+st_lib.markdown('# Movie Recommender system')
 
-st.markdown('# Movie Recommender system')
-# social_components = open("assets/social_components.html", 'r', encoding='utf-8')
-# components.html(social_components.read())
+# Create the search panel and search button
+main_layout, search_layout = st_lib.columns([10, 1])
+movie_options = main_layout.multiselect('Which movies do you like?', movie_data["title"].unique())
+search_movies_btn = search_layout.button("search")
 
-# add search panel and search button
-main_layout, search_layout = st.columns([10, 1])
-options = main_layout.multiselect('Which movies do you like?', movie["title"].unique())
-show_recommended_movies_btn = search_layout.button("search")
+# Add widgets to the sidebar
+num_recommended_movies = st_lib.sidebar.slider("Recommended movie number", min_value=5, max_value=10)
+if num_recommended_movies:
+    const_lib.RECOMMENDATION_NUMBER = num_recommended_movies
+display_score = st_lib.sidebar.checkbox("Show score")
 
-# add widgets on sidebar
-recommended_movie_num = st.sidebar.slider("Recommended movie number", min_value=5, max_value=10)
-if recommended_movie_num:
-    const.MOVIE_NUMBER = recommended_movie_num
-show_score = st.sidebar.checkbox("Show score")
+# Initialize movie widgets
+score_based_col = create_movie_widget(score_cfg)
+content_based_col = create_movie_widget(content_cfg)
+content_plus_col = create_movie_widget(content_plus_cfg)
 
-# create horizontal layouts for movies
-col_for_score_based = initialize_movie_widget(score_based_cfg)
-col_for_content_based = initialize_movie_widget(content_based_cfg)
-col_for_content_based_extra = initialize_movie_widget(content_extra_based_cfg)
+# Display recommended movies based on weighted average
+score_based_recommended_movies = weight_avg_recommendations()
+show_basic_info(score_based_col, display_score)
 
-# show recommended movies based on weighted average (this is same for all movies)
-# score_based_recommended_movies = weighted_average_based_recommendations()
-# show_info(col_for_score_based, show_score)
+# Display recommended movies when the search button is clicked
+if search_movies_btn:
+    content_based_movies = content_recommendations(movie_data, movie_options)
+    display_movie_info(content_based_movies, content_based_col, display_score)
 
-# when search clicked
-if show_recommended_movies_btn:
-    contend_based_recommended_movies = contend_based_recommendations(movie, options)
-    show_recommended_movie_info(contend_based_recommended_movies, col_for_content_based, show_score)
-
-    contend_extra_based_recommended_movies = contend_based_recommendations_extra(movie, options)
-    show_recommended_movie_info(contend_extra_based_recommended_movies, col_for_content_based_extra, show_score)
+    content_plus_movies = content_recommendations(movie_data, movie_options)
+    display_movie_info(content_plus_movies, content_plus_col, display_score)
