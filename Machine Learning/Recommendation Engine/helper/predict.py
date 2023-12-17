@@ -13,14 +13,18 @@ def load_movie_scores():
     movies.columns = ["movieId", "title", "score"]
     return movies
 
-def create_cosine_similarity_matrix(tfidf_matrix):
-    """Create and return a cosine similarity matrix based on the given TF-IDF matrix."""
-    return linear_kernel(tfidf_matrix, tfidf_matrix)
-
-def create_cosine_similarity_matrix_count(count_matrix):
-    """Create and return a cosine similarity matrix based on the given count matrix."""
-    return cosine_similarity(count_matrix, count_matrix)
-
-def content_recommendations(movie, titles, cosine_sim):
-    """Generate content-based recommendations using the given similarity matrix."""
+def content_recommendations(movie, titles):
+    """Create and return a cosine similarity matrix based on the given TF-IDF matrix.
+    read matrix create similarity function and call main function"""
+    tfidf_matrix = scipy.sparse.load_npz('data/tfidf_matrix.npz')
+    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     return get_recommendations(movie, titles, cosine_sim)
+
+
+def content_recommendations_plus(movie, titles):
+    """Create and return a cosine similarity matrix based on the given count matrix.
+    read matrix create similarity function and call main function"""
+    count_matrix = scipy.sparse.load_npz("data/count_matrix.npz")
+    cosine_sim = cosine_similarity(count_matrix, count_matrix)
+    return get_recommendations(movie, titles, cosine_sim)
+

@@ -1,7 +1,7 @@
 scipy
 requests
 numpy
-pandas
+pandas<2.0
 scikit-learn
 streamlit
 pandas_profiling
