@@ -5,7 +5,7 @@ class Solution:
         for string in strs:
             map = [0]*26
             for char in string:
-                map[ord(char)-ord('a')]+=1
+                map[ord(char)-97] += 1
             hashmap[tuple(map)].append(string)
         return hashmap.values()
 
