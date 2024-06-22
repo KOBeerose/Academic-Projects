@@ -1,3 +1,4 @@
+from typing import List
 from collections import defaultdict
 
 class Solution:
@@ -13,7 +14,7 @@ class Solution:
             if track[key] != 0:
                 return False
         return True
-    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         result, temp = [], []
         track = {}
         i, ctr = 0, 0

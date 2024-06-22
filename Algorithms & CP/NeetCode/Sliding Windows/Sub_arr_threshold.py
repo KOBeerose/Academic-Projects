@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-    def numOfSubarrays(self, arr: list[int], k: int, threshold: int) -> int:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
       c = 0
       elm_sum = sum(arr[:k])+arr[-1]-arr[k]
       for i in range(len(arr)-k):

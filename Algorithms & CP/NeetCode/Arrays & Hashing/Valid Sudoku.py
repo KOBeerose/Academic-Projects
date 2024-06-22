@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-    def isValidSudoku(self, board: list[list[str]]) -> bool: 
+    def isValidSudoku(self, board: List[List[str]]) -> bool: 
         for i in range(len(board)):
             row_count = {}
             col_count = {}

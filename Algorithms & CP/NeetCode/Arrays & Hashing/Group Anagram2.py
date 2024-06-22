@@ -1,6 +1,8 @@
+from typing import List
 from collections import defaultdict
+
 class Solution:
-    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         sorted_strs = [ ''.join(sorted(elem)) for elem in strs]
         hashmap = defaultdict(list)
         for i, elem in enumerate(sorted_strs):

@@ -1,6 +1,8 @@
+from typing import List
 import collections
+
 class Solution:
-    def isValidSudoku(self, board: list[list[str]]) -> bool:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
         cols = collections.defaultdict(set)
         rows = collections.defaultdict(set)
         squares = collections.defaultdict(set)

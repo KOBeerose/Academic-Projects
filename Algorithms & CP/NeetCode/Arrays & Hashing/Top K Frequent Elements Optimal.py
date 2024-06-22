@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         freq_dict = {}
         freq_array = [[] for _ in range(len(nums) + 1)]
         for num in nums:

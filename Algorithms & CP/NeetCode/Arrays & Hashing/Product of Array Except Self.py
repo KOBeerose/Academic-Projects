@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
         answer = []
         for i in range(0, len(nums)):
             left_array = nums[:i]

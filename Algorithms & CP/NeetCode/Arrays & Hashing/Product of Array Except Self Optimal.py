@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
         answer = [1] * len(nums)
         multi = 1
         for i in range(1, len(nums)):
