@@ -1,20 +1,16 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        i, j = 0, len(s)-1
-        while j > i:
-            print("---------new iteration---------")
-            print(i, j)
-            print(s[i], s[j])
-            if not s[i].isalnum():
-                i+=1
-                print("not s[i].isalnum() => i+1")
-            elif not s[j].isalnum():
-                j-=1
-                print("not s[j].isalnum() => j-1")
-            elif s[i].lower() != s[j].lower():
+        left_pt, right_pt = 0, len(s)-1
+        while right_pt - left_pt > 0:
+            if s[left_pt].isalnum()==False:
+                left_pt+=1
+            elif s[right_pt].isalnum()==False:
+                right_pt-=1
+            elif s[left_pt].lower()!=s[right_pt].lower():
                 return False
             else:
-                i, j = i+1, j-1
+                left_pt+=1
+                right_pt-=1
         return True
                 
 mysolution = Solution()
