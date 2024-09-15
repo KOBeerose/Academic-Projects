@@ -3,41 +3,30 @@ from collections import defaultdict
 class TimeMap:
 
     def __init__(self):
-        self.map_time = defaultdict(dict)
-        self.prev_timestamps = []
-        return None
+        self.timeMap = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.map_time[key][timestamp] = value
-        self.prev_timestamps.append(timestamp)
+        self.timeMap[key].append((timestamp, value))
+        self.previous_tsmp = timestamp
         return None
 
     def get(self, key: str, timestamp: int) -> str:
-        
-        def get_pre_timestamp(timestamp: int) -> int:
-            stamp_list = self.prev_timestamps
-            l, r = 0, len(stamp_list)-1
+        if key in self.timeMap:
+            result = None
+            if self.previous_tsmp <= timestamp:
+                return self.timeMap[key][-1][1]
+            l, r = 0, len(self.timeMap[key])-1
             while l <= r:
-                
-                mid = (l+r)//2
-                if timestamp < stamp_list[mid] :
+                mid = (r + l) // 2
+                if timestamp < self.timeMap[key][mid][0]:
                     r = mid - 1
                 else:
+                    result = self.timeMap[key][mid][1]
                     l = mid + 1
-            res = stamp_list[r] if stamp_list[r]<timestamp else -1
-            return res
-            
-        prev_timestamp = get_pre_timestamp(timestamp)
-        map_time = self.map_time
-        if key in map_time:
-            if timestamp in map_time[key]:
-                return map_time[key][timestamp]
-            elif (self.prev_timestamps) and prev_timestamp in map_time[key]:
-                return map_time[key][prev_timestamp]
-            else:
-                return ""
+            return result if result else ""
         else:
             return ""
+        
 
 input_list = ["TimeMap", "set", ["test", "one", 10], "set", ["test", "two", 20], "set", ["test", "three", 30], "get", ["test", 15], "get", ["test", 25], "get", ["test", 35]]
 
