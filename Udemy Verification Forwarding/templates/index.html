@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last Emails</title>
     <style>
+        /* Ensure the body takes full height, and use flexbox for layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content wrapper to hold the content and allow footer to stick to bottom */
+        .content-wrapper {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            padding: 20px;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        header img {
+            width: 150px;
+            margin-right: auto;
         }
         .email-container {
             max-width: 600px;
@@ -64,38 +86,122 @@
         .email-footer a:hover {
             text-decoration: underline;
         }
+
+        /* Sticky Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.85em;
+            color: #777;
+            background-color: #f5f5f5;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
-    {% for email in emails %}
-    <div class="email-container">
-        <!-- Email Header with Logo and Time -->
-        <div class="email-header">
-            <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" alt="Udemy Logo">
-            <div class="email-timestamp">
-                {{ email.formatted_time }} ({{ email.time_ago }})
+
+    <header>
+        <!-- Local Data INPT Logo -->
+        <img src="{{ url_for('static', filename='data_family.png') }}" alt="INPT Logo">
+    </header>
+    
+    <div id="email-list">
+        {% for email in emails %}
+        <div class="email-container">
+            <!-- Local Udemy Logo -->
+            <div class="email-header">
+                <img src="{{ url_for('static', filename='logo_udemy.svg') }}" alt="Udemy Logo">
+                <div class="email-timestamp">
+                    {{ email.formatted_time }} ({{ email.time_ago }})
+                </div>
+            </div>
+            <div class="email-content">
+                <h2>Subject: {{ email.subject }}</h2>
+                <p><strong>Sender:</strong> {{ email.sender }}</p>
+                <p><strong>Body:</strong> {{ email.body }}</p>
+            </div>
+            <div class="verification-code">
+                Verification Code: {{ email.verification_code }}
+            </div>
+            <div class="email-footer">
+                <p>If you didn't request this code, please <a href="https://support.udemy.com/">contact us</a>.</p>
+                <p>Delivered by Udemy | 600 Harrison Street, 3rd Floor, San Francisco, CA 94107</p>
             </div>
         </div>
-        
-        <!-- Email Content -->
-        <div class="email-content">
-            <h2>Subject: {{ email.subject }}</h2>
-            <p><strong>Sender:</strong> {{ email.sender }}</p>
-            <p><strong>Body:</strong> {{ email.body }}</p>
-        </div>
-        
-        <!-- Display Verification Code if found -->
-        <div class="verification-code">
-            Verification Code: {{ email.verification_code }}
-        </div>
-        
-        <!-- Email Footer -->
-        <div class="email-footer">
-            <p>If you didn't request this code, please <a href="https://support.udemy.com/">contact us</a>.</p>
-            <p>Delivered by Udemy | 600 Harrison Street, 3rd Floor, San Francisco, CA 94107</p>
-        </div>
+        <hr>
+        {% endfor %}
     </div>
-    <hr>
-    {% endfor %}
+
+    <!-- Footer with the message -->
+    <footer>
+        Made with 💙 by KOBeerose
+    </footer>
+
+    <!-- Infinite Scroll Script -->
+    <script>
+        let nextPageToken = "{{ next_page_token }}";  // Fetch the initial next page token from the server
+
+        // Function to load more emails using AJAX
+        async function loadMoreEmails() {
+            if (!nextPageToken) {
+                console.log("No more nextPageToken. Stopping loading.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/fetch-emails?pageToken=${nextPageToken}`);
+                const data = await response.json();
+
+                console.log("Fetched Data:", data);  // Log the fetched data
+
+                if (data.emails) {
+                    const emailList = document.getElementById("email-list");
+
+                    data.emails.forEach(email => {
+                        const emailHTML = `
+                        <div class="email-container">
+                            <div class="email-header">
+                                <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" alt="Udemy Logo">
+                                <div class="email-timestamp">
+                                    ${email.formatted_time} (${email.time_ago})
+                                </div>
+                            </div>
+                            <div class="email-content">
+                                <h2>Subject: ${email.subject}</h2>
+                                <p><strong>Sender:</strong> ${email.sender}</p>
+                                <p><strong>Body:</strong> ${email.body}</p>
+                            </div>
+                            <div class="verification-code">
+                                Verification Code: ${email.verification_code}
+                            </div>
+                            <div class="email-footer">
+                                <p>If you didn't request this code, please <a href="https://support.udemy.com/">contact us</a>.</p>
+                                <p>Delivered by Udemy | 600 Harrison Street, 3rd Floor, San Francisco, CA 94107</p>
+                            </div>
+                        </div>
+                        <hr>`;
+                        emailList.insertAdjacentHTML("beforeend", emailHTML);  // Append the email HTML
+                    });
+                }
+
+                nextPageToken = data.next_page_token;
+                console.log("Next Page Token:", nextPageToken);  // Log the next page token
+
+                if (!nextPageToken) {
+                    const loadMoreDiv = document.getElementById('load-more');
+                    loadMoreDiv.innerText = "No more emails to load";
+                }
+            } catch (error) {
+                console.error("Error fetching emails:", error);
+            }
+        }
+
+        // Event listener to trigger loading more emails when scrolling to the bottom
+        window.addEventListener('scroll', function() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                loadMoreEmails();
+            }
+        });
+    </script>
 </body>
 </html>

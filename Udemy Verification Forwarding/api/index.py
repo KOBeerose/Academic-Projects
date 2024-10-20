@@ -1,46 +1,31 @@
+from datetime import datetime
 import os
-import base64
-import re
-import logging
+import timeago
+from flask import Flask, jsonify, render_template, request
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from flask import Flask, render_template
-from dotenv import load_dotenv
-from datetime import datetime
-import timeago 
+import base64
+import re
+import logging
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 
-# Load environment variables
-load_dotenv()
+# Load environment variables (assume Vercel or environment settings)
+# load_dotenv() if you're using dotenv locally
 
-# Initialize Flask app and explicitly set the templates folder
-app = Flask(__name__, template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'templates')))
+app = Flask(__name__, static_url_path='', static_folder="../static", template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'templates')))
 
-# Function to authenticate and get credentials using refresh tokens from environment variables
 def get_credentials():
     try:
-        creds = None
-        # Fetch tokens and credentials from environment variables
+        # Use environment variables for credentials
         refresh_token = os.environ.get('GOOGLE_REFRESH_TOKEN')
         client_id = os.environ.get('GOOGLE_CLIENT_ID')
         client_secret = os.environ.get('GOOGLE_CLIENT_SECRET')
         token_uri = os.environ.get('GOOGLE_TOKEN_URI')
 
-        # Log the presence of environment variables
-        if not refresh_token:
-            logging.error("GOOGLE_REFRESH_TOKEN is missing!")
-        if not client_id:
-            logging.error("GOOGLE_CLIENT_ID is missing!")
-        if not client_secret:
-            logging.error("GOOGLE_CLIENT_SECRET is missing!")
-        if not token_uri:
-            logging.error("GOOGLE_TOKEN_URI is missing!")
-
-        # Ensure all credentials are present
         if refresh_token and client_id and client_secret and token_uri:
             creds = Credentials(
                 None,
@@ -49,7 +34,6 @@ def get_credentials():
                 client_id=client_id,
                 client_secret=client_secret
             )
-            # Refresh the credentials if they are expired
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
 
@@ -60,25 +44,26 @@ def get_credentials():
         logging.error(f"Error during credential handling: {str(e)}")
         return str(e)
 
-# Function to get Udemy verification code from Gmail
-def get_udemy_verification_code():
+def get_udemy_verification_code(page_token=None):
     try:
         creds = get_credentials()
         if isinstance(creds, str):
             logging.error(f"Error with credentials: {creds}")
             return {'error': f'Error with credentials: {creds}'}
         
-        logging.info("Attempting to connect to Gmail API...")
         service = build('gmail', 'v1', credentials=creds)
-        
-        # Search for the latest Udemy verification email
+
+        # Search for Udemy emails, include pageToken for pagination
         query = "from:no-reply@e.udemymail.com subject:Udemy"
-        logging.info("Fetching messages from Gmail...")
-        results = service.users().messages().list(userId='me', q=query, maxResults=1).execute()
+        request_params = {'userId': 'me', 'q': query, 'maxResults': 5}
+        if page_token:
+            request_params['pageToken'] = page_token
+
+        results = service.users().messages().list(**request_params).execute()
         messages = results.get('messages', [])
+        next_page_token = results.get('nextPageToken')
 
         if not messages:
-            logging.warning("No Udemy verification code found.")
             return {'error': "No Udemy verification code found."}
 
         email_list = []
@@ -90,24 +75,34 @@ def get_udemy_verification_code():
             subject = next(header['value'] for header in headers if header['name'] == 'Subject')
             sender = next(header['value'] for header in headers if header['name'] == 'From')
 
-            # Extract the body and attempt to find the 6-digit verification code
+            # Extract the body and find the verification code
             body = ""
-            for part in message['payload']['parts']:
-                if part['mimeType'] == 'text/plain':
-                    body = base64.urlsafe_b64decode(part['body']['data']).decode('utf-8')
-                    break
+
+            # Handle both multipart and single-part emails
+            if 'parts' in message['payload']:
+                for part in message['payload']['parts']:
+                    if part['mimeType'] == 'text/plain':
+                        body = base64.urlsafe_b64decode(part['body']['data']).decode('utf-8')
+                        break
+            else:
+                # If no parts, check the payload's body field directly
+                if 'body' in message['payload'] and 'data' in message['payload']['body']:
+                    body = base64.urlsafe_b64decode(message['payload']['body']['data']).decode('utf-8')
 
             # Use regex to capture the 6-digit verification code
             match = re.search(r'\d{6}', body)
-            verification_code = match.group(0) if match else "No code found."
+            verification_code = match.group(0) if match else None  # Only proceed if a valid code is found
 
-            # Extract the email's timestamp (internalDate is in milliseconds)
-            timestamp_ms = int(message['internalDate'])  # Milliseconds since epoch
-            email_date = datetime.fromtimestamp(timestamp_ms / 1000)  # Convert to datetime
-            formatted_time = email_date.strftime("%I:%M %p")  # Format the time like "1:10 AM"
-            time_ago = timeago.format(email_date, datetime.utcnow())  # Show relative time (e.g., "2 hours ago")
+            # Skip emails without a valid verification code
+            if not verification_code:
+                continue  # Skip this email if no valid code was found
 
-            # Append the data to the list
+            # Extract timestamp
+            timestamp_ms = int(message['internalDate'])  # Convert from ms to s
+            email_date = datetime.fromtimestamp(timestamp_ms / 1000)
+            formatted_time = email_date.strftime("%I:%M %p")
+            time_ago = timeago.format(email_date, datetime.utcnow())
+
             email_list.append({
                 'subject': subject,
                 'sender': sender,
@@ -117,9 +112,8 @@ def get_udemy_verification_code():
                 'time_ago': time_ago
             })
 
-        logging.info("Successfully fetched email data.")
-        return {'emails': email_list}
-    
+        return {'emails': email_list, 'next_page_token': next_page_token}
+
     except HttpError as http_err:
         logging.error(f"HTTP Error: {http_err}")
         return {'error': f'HTTP Error: {http_err}'}
@@ -128,22 +122,36 @@ def get_udemy_verification_code():
         return {'error': f'An error occurred: {str(e)}'}
 
 
-# Route to show the loading page immediately
+
+# Route for loading the initial page
 @app.route('/')
 def home():
-    return render_template('loading.html')
-
-# Route to actually fetch emails in the background
-@app.route('/fetch-emails')
-def fetch_emails():
     email_data = get_udemy_verification_code()
 
     # If there's an error, render the error page
     if 'error' in email_data:
         return render_template('error.html', error=email_data['error'])
 
-    return render_template('index.html', emails=email_data['emails'])
+    return render_template('index.html', emails=email_data['emails'], next_page_token=email_data['next_page_token'])
 
-# Expose the Flask app to Vercel
+# Route for fetching emails via AJAX (for infinite scroll)
+@app.route('/fetch-emails')
+def fetch_emails():
+    # Get the pageToken from the request query parameters
+    page_token = request.args.get('pageToken')
+
+    # Fetch the next set of emails
+    email_data = get_udemy_verification_code(page_token=page_token)
+
+    # If there's an error, return the error as JSON
+    if 'error' in email_data:
+        return jsonify(email_data)
+
+    # Return the emails and nextPageToken as JSON for infinite scroll
+    return jsonify({
+        'emails': email_data['emails'],
+        'next_page_token': email_data['next_page_token']  # Ensure the next page token is passed
+    })
+
 if __name__ == '__main__':
     app.run(debug=True)
