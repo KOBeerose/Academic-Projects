@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Emails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .email-container {
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .email-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .email-header img {
+            width: 120px;
+        }
+        .email-timestamp {
+            font-size: 0.85em;
+            color: #777;
+        }
+        .email-content {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .email-content p {
+            margin: 10px 0;
+        }
+        .verification-code {
+            font-size: 2em;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 2px solid #ddd;
+            color: #333;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .email-footer {
+            color: #777;
+            font-size: 0.9em;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+        .email-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .email-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% for email in emails %}
+    <div class="email-container">
+        <!-- Email Header with Logo and Time -->
+        <div class="email-header">
+            <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" alt="Udemy Logo">
+            <div class="email-timestamp">
+                {{ email.formatted_time }} ({{ email.time_ago }})
+            </div>
+        </div>
+        
+        <!-- Email Content -->
+        <div class="email-content">
+            <h2>Subject: {{ email.subject }}</h2>
+            <p><strong>Sender:</strong> {{ email.sender }}</p>
+            <p><strong>Body:</strong> {{ email.body }}</p>
+        </div>
+        
+        <!-- Display Verification Code if found -->
+        <div class="verification-code">
+            Verification Code: {{ email.verification_code }}
+        </div>
+        
+        <!-- Email Footer -->
+        <div class="email-footer">
+            <p>If you didn't request this code, please <a href="https://support.udemy.com/">contact us</a>.</p>
+            <p>Delivered by Udemy | 600 Harrison Street, 3rd Floor, San Francisco, CA 94107</p>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</body>
+</html>
