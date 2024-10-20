@@ -5,23 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last Emails</title>
     <style>
-        /* Ensure the body takes full height, and use flexbox for layout */
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Main content wrapper to hold the content and allow footer to stick to bottom */
-        .content-wrapper {
-            flex-grow: 1;
-            padding: 20px;
-        }
-
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
+            padding: 20px;
         }
         header {
             display: flex;
@@ -87,6 +74,45 @@
             text-decoration: underline;
         }
 
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .load-more-button {
+            background-color: #0080C7;  /* Custom blue color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .load-more-button:hover {
+            background-color: #005f99;  /* Darker shade on hover */
+        }
+        .load-more-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0080C7;  /* Custom blue color */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Sticky Footer */
         footer {
             text-align: center;
@@ -108,7 +134,6 @@
     <div id="email-list">
         {% for email in emails %}
         <div class="email-container">
-            <!-- Local Udemy Logo -->
             <div class="email-header">
                 <img src="{{ url_for('static', filename='logo_udemy.svg') }}" alt="Udemy Logo">
                 <div class="email-timestamp">
@@ -132,21 +157,33 @@
         {% endfor %}
     </div>
 
-    <!-- Footer with the message -->
+    <!-- Load More Button -->
+    <div class="load-more-container">
+        <button id="load-more-button" class="load-more-button" onclick="loadMoreEmails()">Load More</button>
+    </div>
+
+    <!-- Sticky Footer with the message -->
     <footer>
         Made with 💙 by KOBeerose
     </footer>
 
-    <!-- Infinite Scroll Script -->
+    <!-- Load More Script with Loading Spinner -->
     <script>
         let nextPageToken = "{{ next_page_token }}";  // Fetch the initial next page token from the server
 
         // Function to load more emails using AJAX
         async function loadMoreEmails() {
+            const loadMoreButton = document.getElementById('load-more-button');
+
             if (!nextPageToken) {
-                console.log("No more nextPageToken. Stopping loading.");
+                loadMoreButton.disabled = true;
+                loadMoreButton.innerText = "No more emails to load";
                 return;
             }
+
+            // Show loading spinner on the button
+            loadMoreButton.innerHTML = '<span class="spinner"></span> Loading...';
+            loadMoreButton.disabled = true;
 
             try {
                 const response = await fetch(`/fetch-emails?pageToken=${nextPageToken}`);
@@ -161,7 +198,7 @@
                         const emailHTML = `
                         <div class="email-container">
                             <div class="email-header">
-                                <img src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg" alt="Udemy Logo">
+                                <img src="{{ url_for('static', filename='logo_udemy.svg') }}" alt="Udemy Logo">
                                 <div class="email-timestamp">
                                     ${email.formatted_time} (${email.time_ago})
                                 </div>
@@ -188,20 +225,18 @@
                 console.log("Next Page Token:", nextPageToken);  // Log the next page token
 
                 if (!nextPageToken) {
-                    const loadMoreDiv = document.getElementById('load-more');
-                    loadMoreDiv.innerText = "No more emails to load";
+                    loadMoreButton.disabled = true;
+                    loadMoreButton.innerText = "No more emails to load";
+                } else {
+                    loadMoreButton.innerText = "Load More";
+                    loadMoreButton.disabled = false;
                 }
             } catch (error) {
                 console.error("Error fetching emails:", error);
+                loadMoreButton.innerText = "Load More";
+                loadMoreButton.disabled = false;
             }
         }
-
-        // Event listener to trigger loading more emails when scrolling to the bottom
-        window.addEventListener('scroll', function() {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                loadMoreEmails();
-            }
-        });
     </script>
 </body>
 </html>
