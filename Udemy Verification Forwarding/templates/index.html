@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last Emails</title>
+    <title>Udemy INPT Data</title>
+    <link rel="icon" href="{{ url_for('static', filename='group_icon.jpg') }}" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,17 +68,18 @@
             margin-top: 20px;
         }
         .email-footer a {
-            color: #4CAF50;
+            color: #006BBF;
             text-decoration: none;
         }
         .email-footer a:hover {
             text-decoration: underline;
         }
 
-        /* Load More Button */
+        /* Load More Button and Spinner */
         .load-more-container {
             text-align: center;
             margin: 20px 0;
+            position: relative;
         }
         .load-more-button {
             background-color: #0080C7;  /* Custom blue color */
@@ -85,27 +87,31 @@
             padding: 10px 20px;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 128, 199, 0.3);  /* Subtle shadow */
+            transition: all 0.3s ease;
         }
         .load-more-button:hover {
-            background-color: #005f99;  /* Darker shade on hover */
+            background-color: #006BBF;  /* Darker blue on hover */
+            box-shadow: 0 6px 12px rgba(0, 128, 199, 0.5);  /* Stronger shadow on hover */
         }
         .load-more-button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
 
-        /* Loading Spinner */
+        /* Spinner */
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #0080C7;  /* Custom blue color */
+            border-top: 4px solid #0080C7;
             border-radius: 50%;
             width: 24px;
             height: 24px;
             animation: spin 1s linear infinite;
-            display: inline-block;
+            display: none;  /* Hidden by default */
+            margin: 20px auto;
         }
 
         @keyframes spin {
@@ -157,9 +163,10 @@
         {% endfor %}
     </div>
 
-    <!-- Load More Button -->
+    <!-- Load More Button and Spinner -->
     <div class="load-more-container">
         <button id="load-more-button" class="load-more-button" onclick="loadMoreEmails()">Load More</button>
+        <div id="spinner" class="spinner"></div>  <!-- Spinner is here but hidden initially -->
     </div>
 
     <!-- Sticky Footer with the message -->
@@ -170,30 +177,31 @@
     <!-- Load More Script with Loading Spinner -->
     <script>
         let nextPageToken = "{{ next_page_token }}";  // Fetch the initial next page token from the server
-
+    
         // Function to load more emails using AJAX
         async function loadMoreEmails() {
             const loadMoreButton = document.getElementById('load-more-button');
-
+            const spinner = document.getElementById('spinner');  // Get spinner element
+    
             if (!nextPageToken) {
                 loadMoreButton.disabled = true;
                 loadMoreButton.innerText = "No more emails to load";
                 return;
             }
-
-            // Show loading spinner on the button
-            loadMoreButton.innerHTML = '<span class="spinner"></span> Loading...';
-            loadMoreButton.disabled = true;
-
+    
+            // Hide button and show spinner
+            loadMoreButton.style.display = 'none';
+            spinner.style.display = 'inline-block';
+    
             try {
                 const response = await fetch(`/fetch-emails?pageToken=${nextPageToken}`);
                 const data = await response.json();
-
+    
                 console.log("Fetched Data:", data);  // Log the fetched data
-
+    
                 if (data.emails) {
                     const emailList = document.getElementById("email-list");
-
+    
                     data.emails.forEach(email => {
                         const emailHTML = `
                         <div class="email-container">
@@ -220,23 +228,31 @@
                         emailList.insertAdjacentHTML("beforeend", emailHTML);  // Append the email HTML
                     });
                 }
-
+    
                 nextPageToken = data.next_page_token;
                 console.log("Next Page Token:", nextPageToken);  // Log the next page token
-
+    
+                // Hide spinner and show button again if there are more emails
+                spinner.style.display = 'none';
+    
                 if (!nextPageToken) {
                     loadMoreButton.disabled = true;
                     loadMoreButton.innerText = "No more emails to load";
+                    loadMoreButton.style.display = '';
                 } else {
                     loadMoreButton.innerText = "Load More";
                     loadMoreButton.disabled = false;
+                    loadMoreButton.style.display = '';
                 }
             } catch (error) {
                 console.error("Error fetching emails:", error);
+                spinner.style.display = 'none';
                 loadMoreButton.innerText = "Load More";
                 loadMoreButton.disabled = false;
+                loadMoreButton.style.display = '';
             }
         }
     </script>
+    
 </body>
 </html>

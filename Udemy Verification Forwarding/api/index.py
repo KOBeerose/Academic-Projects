@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import timeago
 from flask import Flask, jsonify, render_template, request
@@ -100,7 +100,11 @@ def get_udemy_verification_code(page_token=None):
             # Extract timestamp
             timestamp_ms = int(message['internalDate'])  # Convert from ms to s
             email_date = datetime.fromtimestamp(timestamp_ms / 1000)
+            
             formatted_time = email_date.strftime("%I:%M %p")
+            # transform formatted time to GMT+1 time
+            formatted_time = (datetime.strptime(formatted_time, "%I:%M %p") + timedelta(hours=1)).strftime("%I:%M %p")
+            
             time_ago = timeago.format(email_date, datetime.utcnow())
 
             email_list.append({
