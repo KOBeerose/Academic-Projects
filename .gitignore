@@ -7,3 +7,4 @@
 *.java
 Large_Data/
 *.pem
+.git_local_repo_credentials
